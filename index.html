@@ -2,31 +2,297 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>Leon English Lab 2.0</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#243b55">
+<title>Leon English Lab 2.1</title>
+
 <style>
 *{box-sizing:border-box}
-body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:#f4f7fb;color:#172033}
-header{background:linear-gradient(135deg,#243b55,#141e30);color:white;text-align:center;padding:32px 18px}
-h1{margin:0 0 8px;font-size:28px}
-header p{margin:0;opacity:.85}
-main{max-width:760px;margin:auto;padding:18px}
-.card{background:white;border-radius:18px;padding:20px;margin:14px 0;box-shadow:0 4px 18px #0001}
-h2{margin-top:0}
-button{border:0;border-radius:12px;padding:12px 16px;font-size:16px;font-weight:600}
-.primary{background:#243b55;color:white}
-.soft{background:#edf2f7;color:#243b55}
-.stat{background:#f0f4fa;border-radius:14px;padding:15px;text-align:center}
-.stat b{display:block;font-size:26px}
-.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-.pattern{padding:12px;margin:8px 0;background:#f7f9fc;border-left:4px solid #243b55;border-radius:8px}
-.pattern b{display:block;margin-bottom:4px}
-.question{font-size:19px;line-height:1.5;margin:16px 0}
-.options{display:grid;gap:10px}
-.options button{text-align:left;background:#f1f4f7;width:100%}
-.answer{padding:14px;background:#eef8f0;border-radius:12px;margin:12px 0}
+
+body{
+margin:0;
+font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;
+background:#f4f7fb;
+color:#172033;
+line-height:1.6;
+}
+
+header{
+background:linear-gradient(135deg,#243b55,#141e30);
+color:white;
+padding:32px 18px;
+text-align:center;
+}
+
+header h1{
+margin:0;
+font-size:30px;
+}
+
+header p{
+margin:6px 0 0;
+opacity:.85;
+}
+
+nav{
+display:flex;
+gap:8px;
+overflow-x:auto;
+padding:10px;
+background:white;
+position:sticky;
+top:0;
+z-index:20;
+box-shadow:0 2px 10px #0001;
+}
+
+nav button{
+flex:0 0 auto;
+border:0;
+border-radius:10px;
+padding:10px 14px;
+background:#edf2f7;
+color:#243b55;
+font-weight:700;
+}
+
+nav button.active{
+background:#243b55;
+color:white;
+}
+
+main{
+max-width:800px;
+margin:auto;
+padding:16px;
+}
+
+.page{
+display:none;
+}
+
+.page.active{
+display:block;
+}
+
+.card{
+background:white;
+border-radius:18px;
+padding:20px;
+margin:14px 0;
+box-shadow:0 4px 18px #0000000d;
+}
+
+h2{
+margin-top:0;
+}
+
+h3{
+margin-bottom:8px;
+}
+
+.grid{
+display:grid;
+grid-template-columns:repeat(2,1fr);
+gap:10px;
+}
+
+.stats{
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:10px;
+}
+
+.stat{
+background:#f0f4fa;
+border-radius:14px;
+padding:14px;
+text-align:center;
+}
+
+.stat b{
+display:block;
+font-size:25px;
+}
+
+.pattern{
+background:#f7f9fc;
+border-left:4px solid #243b55;
+padding:12px;
+border-radius:8px;
+margin:9px 0;
+}
+
+.pattern b{
+display:block;
+margin-bottom:3px;
+}
+
+button{
+border:0;
+border-radius:11px;
+padding:12px 16px;
+font-size:15px;
+font-weight:700;
+cursor:pointer;
+}
+
+.primary{
+background:#243b55;
+color:white;
+}
+
+.secondary{
+background:#edf2f7;
+color:#243b55;
+}
+
+.success{
+background:#eaf8ee;
+color:#176b35;
+}
+
+.danger{
+background:#fff0f0;
+color:#b42318;
+}
+
+.question{
+font-size:20px;
+font-weight:600;
+margin:14px 0;
+}
+
+.options{
+display:grid;
+gap:9px;
+}
+
+.options button{
+background:#f1f4f7;
+text-align:left;
+width:100%;
+}
+
+.options button:hover{
+background:#e3e9f0;
+}
+
+.feedback{
+padding:15px;
+border-radius:12px;
+margin:12px 0;
+}
+
+.correct{
+background:#eaf8ee;
+color:#176b35;
+}
+
+.wrong{
+background:#fff0f0;
+color:#b42318;
+}
+
+input{
+width:100%;
+padding:13px;
+font-size:16px;
+border:1px solid #ccd5df;
+border-radius:11px;
+outline:none;
+}
+
+input:focus{
+border-color:#243b55;
+}
+
+.progress{
+height:10px;
+background:#e5eaf0;
+border-radius:99px;
+overflow:hidden;
+margin:10px 0;
+}
+
+.progress div{
+height:100%;
+background:#243b55;
+width:0;
+}
+
+.challenge-box{
+background:#f7f9fc;
+padding:16px;
+border-radius:14px;
+margin:12px 0;
+}
+
+.mini{
+font-size:14px;
+color:#697586;
+}
+
+.badge{
+display:inline-block;
+background:#edf2f7;
+padding:5px 9px;
+border-radius:20px;
+font-size:13px;
+margin:3px;
+}
+
+.lesson{
+border-bottom:1px solid #e5e8ed;
+padding:12px 0;
+}
+
+.lesson:last-child{
+border-bottom:0;
+}
+
+footer{
+text-align:center;
+padding:30px 15px;
+color:#7b8491;
+font-size:13px;
+}
+
+@media(max-width:560px){
+
+header{
+padding:26px 15px;
+}
+
+header h1{
+font-size:26px;
+}
+
+main{
+padding:10px;
+}
+
+.card{
+padding:16px;
+}
+
+.stats{
+grid-template-columns:1fr 1fr 1fr;
+gap:6px;
+}
+
+.stat{
+padding:10px 5px;
+}
+
+.stat b{
+font-size:21px;
+}
+
+}
 </style>
 </head>
+
 <body>
 
 <header>
@@ -34,166 +300,857 @@ button{border:0;border-radius:12px;padding:12px 16px;font-size:16px;font-weight:
 <p>Life English · Practice · Review · Level Up</p>
 </header>
 
+<nav>
+<button class="active" onclick="showPage('home',this)">🏠 Home</button>
+<button onclick="showPage('practice',this)">🎮 Practice</button>
+<button onclick="showPage('daily',this)">🎯 Daily</button>
+<button onclick="showPage('review',this)">🔄 Review</button>
+<button onclick="showPage('mistakes',this)">❌ Mistakes</button>
+</nav>
+
 <main>
+
+<!-- HOME -->
+
+<section id="home" class="page active">
+
 <div class="card">
-<h2>🎮 Today's Progress</h2>
-<div class="grid">
-<div class="stat"><b id="xp">0</b>XP</div>
-<div class="stat"><b id="done">0</b>Correct</div>
+
+<h2>👋 Hi, Leon!</h2>
+
+<p>
+Welcome back to your English Lab.
+</p>
+
+<div class="stats">
+
+<div class="stat">
+<b id="homeXP">0</b>
+XP
 </div>
+
+<div class="stat">
+<b id="homeLevel">1</b>
+Level
+</div>
+
+<div class="stat">
+<b id="homeStreak">0</b>
+🔥 Streak
+</div>
+
+</div>
+
+<div class="progress">
+<div id="levelProgress"></div>
+</div>
+
+<p class="mini" id="levelText">
+0 / 100 XP to next level
+</p>
+
 </div>
 
 <div class="card">
-<h2>🧭 Core Patterns</h2>
-<div class="pattern"><b>After + doing</b>After getting home, I have dinner.</div>
-<div class="pattern"><b>keep + doing</b>I want to keep studying English.</div>
-<div class="pattern"><b>focus on + doing</b>I focus on studying English.</div>
-<div class="pattern"><b>give up + doing</b>I won't give up studying English.</div>
-<div class="pattern"><b>enough + noun + to do</b>I have enough time to study.</div>
-<div class="pattern"><b>too + adjective + to do</b>I'm too tired to study.</div>
-<div class="pattern"><b>was/were going to + verb</b>I was going to walk my dog.</div>
-<div class="pattern"><b>get ready to + verb</b>I'm going to get ready to cook dinner.</div>
-</div>
 
-<div class="card">
-<h2>🎯 Practice Center</h2>
-<div id="app"></div>
-<button class="primary" onclick="nextQuestion()">Start Practice</button>
-</div><div class="card">
-<h2>🔄 Quick Review</h2>
+<h2>🗺️ Learning Map</h2>
 
 <div class="pattern">
 <b>After + doing</b>
-After watching a movie, I usually go to the mall with my girlfriend.
+After getting home, I have dinner.
 </div>
 
 <div class="pattern">
-<b>When + clause</b>
-When I get home, I'll have dinner.
+<b>keep + doing</b>
+I want to keep studying English.
 </div>
 
 <div class="pattern">
-<b>Before + clause</b>
-Before I go to bed, I'll study English.
+<b>focus on + doing</b>
+I focus on studying English.
 </div>
 
 <div class="pattern">
-<b>If + clause</b>
-If I have the day off, I'll go out.
+<b>give up + doing</b>
+I won't give up studying English.
 </div>
 
 <div class="pattern">
-<b>Although + clause</b>
-Although I'm tired, I still want to study English.
+<b>enough + noun + to do</b>
+I have enough time to study.
 </div>
+
+<div class="pattern">
+<b>too + adjective + to do</b>
+I'm too tired to study.
+</div>
+
+<div class="pattern">
+<b>was/were going to + verb</b>
+I was going to walk my dog.
+</div>
+
+<div class="pattern">
+<b>get ready to + verb</b>
+I'm going to get ready to cook dinner.
+</div>
+
 </div>
 
 <div class="card">
-<h2>💬 Daily Chat</h2>
-<p>Talk about your real life with your teacher.</p>
-<p><b>Example:</b> I'm not busy now. I have some free time.</p>
-<p>I want to have a smoke and rest for a while.</p>
-<p>After that, I'll study English.</p>
+
+<h2>📚 Your Daily Plan</h2>
+
+<p>1️⃣ Review old English</p>
+<p>2️⃣ Learn a small amount of new English</p>
+<p>3️⃣ Listening</p>
+<p>4️⃣ Speaking</p>
+<p>5️⃣ Summary</p>
+
+<p class="mini">
+Small steps. Repeat often. Use English in real life.
+</p>
+
 </div>
 
+</section>
+
+
+<!-- PRACTICE -->
+
+<section id="practice" class="page">
+
 <div class="card">
+
+<h2>🎮 Practice Center</h2>
+
+<p class="mini">
+Choose the correct answer. Every correct answer gives you +10 XP.
+</p>
+
+<div id="practiceArea"></div>
+
+</div>
+
+</section>
+
+
+<!-- DAILY -->
+
+<section id="daily" class="page">
+
+<div class="card">
+
 <h2>🎯 Daily Challenge</h2>
-<div id="challenge"></div>
-<button class="soft" onclick="showChallenge()">Show Challenge</button>
+
+<p class="mini">
+First try to say or type the English yourself.
+Then check the answer.
+</p>
+
+<div id="dailyArea"></div>
+
 </div>
 
+</section>
+
+
+<!-- REVIEW -->
+
+<section id="review" class="page">
+
 <div class="card">
-<h2>📚 Today's Lesson</h2>
-<p>Small amount of new English + lots of useful review.</p>
-<p>Review → New Words → Listening → Speaking → Summary</p>
+
+<h2>🔄 Rolling Review</h2>
+
+<p class="mini">
+These are the structures we keep reviewing.
+</p>
+
+<div id="reviewArea"></div>
+
 </div>
+
+</section>
+
+
+<!-- MISTAKES -->
+
+<section id="mistakes" class="page">
+
+<div class="card">
+
+<h2>❌ Mistakes</h2>
+
+<p class="mini">
+Your mistakes are saved automatically on this device.
+</p>
+
+<div id="mistakeArea"></div>
+
+</div>
+
+</section>
+
 </main>
 
-<footer style="text-align:center;padding:30px;color:#777">
-Leon English Lab · Small steps, every day.
+<footer>
+Leon English Lab 2.1<br>
+Small steps, every day. 🌍
 </footer>
 
+
 <script>
+
+"use strict";
+
+
+/* =========================
+   DATA
+========================= */
+
 const questions=[
-["After ___ dinner, I usually study English.",["eating","eat","ate"],0],
-["I want to keep ___ English.",["study","studying","studied"],1],
-["I focus on ___ English.",["study","studying","studied"],1],
-["I'm too tired ___ study tonight.",["to","for","at"],0],
-["I have enough time ___ English tonight.",["study","to study","studying"],1]
-];
 
-let current=-1;
-let xp=Number(localStorage.getItem("leonXP")||0);
-let done=Number(localStorage.getItem("leonDone")||0);
+{
+q:"After ___ dinner, I usually study English.",
+a:["eat","eating","ate"],
+c:1,
+ex:"After + doing → After eating dinner..."
+},
 
-function update(){
-document.getElementById("xp").textContent=xp;
-document.getElementById("done").textContent=done;
+{
+q:"I want to keep ___ English.",
+a:["study","studying","studied"],
+c:1,
+ex:"keep + doing → keep studying"
+},
+
+{
+q:"I focus on ___ English.",
+a:["study","studying","studied"],
+c:1,
+ex:"focus on + doing → focus on studying"
+},
+
+{
+q:"I won't give up ___ English.",
+a:["study","studying","studied"],
+c:1,
+ex:"give up + doing → give up studying"
+},
+
+{
+q:"I'm too tired ___ study tonight.",
+a:["to","for","at"],
+c:0,
+ex:"too + adjective + to do"
+},
+
+{
+q:"I have enough time ___ English tonight.",
+a:["study","to study","studying"],
+c:1,
+ex:"enough + noun + to do"
+},
+
+{
+q:"I was going ___ walk my dog.",
+a:["to","for","at"],
+c:0,
+ex:"was going to + base verb"
+},
+
+{
+q:"Before I ___ to bed, I'll study English.",
+a:["go","going","went"],
+c:0,
+ex:"Before + present simple"
+},
+
+{
+q:"After ___ home, I have dinner.",
+a:["get","getting","got"],
+c:1,
+ex:"After + doing"
+},
+
+{
+q:"I'm going to get ready ___ dinner.",
+a:["cook","to cook","cooking"],
+c:1,
+ex:"get ready to + base verb"
+},
+
+{
+q:"When I ___ home, I'll have dinner.",
+a:["get","getting","got"],
+c:0,
+ex:"When + present simple"
+},
+
+{
+q:"If I have the day off, I'll ___ out.",
+a:["go","going","went"],
+c:0,
+ex:"If + present simple, will + base verb"
+},
+
+{
+q:"Although I'm tired, I still want ___ English.",
+a:["study","to study","studying"],
+c:1,
+ex:"want + to + verb"
+},
+
+{
+q:"I usually ___ the subway home.",
+a:["take","taking","took"],
+c:0,
+ex:"Habit → simple present"
+},
+
+{
+q:"I ___ studying English now.",
+a:["am","do","did"],
+c:0,
+ex:"Present continuous → am + doing"
 }
 
-function nextQuestion(){
-current=(current+1)%questions.length;
-let q=questions[current];
+];
 
-document.getElementById("app").innerHTML=
-'<div class="question">'+q[0]+'</div>'+
-'<div class="options">'+
-q[1].map((x,n)=>
-'<button onclick="answer('+n+')">'+x+'</button>'
-).join("")+
+
+const dailyChallenges=[
+
+{
+cn:"我今天下班后想坐地铁回家。",
+en:"After I get off work, I'll take the subway home."
+},
+
+{
+cn:"虽然我很累，但我还是想学英语。",
+en:"Although I'm tired, I still want to study English."
+},
+
+{
+cn:"回家后，我会吃晚饭。",
+en:"After getting home, I'll have dinner."
+},
+
+{
+cn:"看完电影后，我通常和女朋友去商场。",
+en:"After watching a movie, I usually go to the mall with my girlfriend."
+},
+
+{
+cn:"我不会放弃学英语。",
+en:"I won't give up studying English."
+},
+
+{
+cn:"我通常下班后坐地铁回家。",
+en:"I usually take the subway home after work."
+},
+
+{
+cn:"我太累了，今晚不能学习。",
+en:"I'm too tired to study tonight."
+},
+
+{
+cn:"我有足够的时间学习英语。",
+en:"I have enough time to study English."
+},
+
+{
+cn:"我打算准备做晚饭。",
+en:"I'm going to get ready to cook dinner."
+},
+
+{
+cn:"我通常看完电影后去商场。",
+en:"I usually go to the mall after watching a movie."
+}
+
+];
+
+
+const patterns=[
+
+["After + doing",
+"After getting home, I have dinner."],
+
+["keep + doing",
+"I want to keep studying English."],
+
+["focus on + doing",
+"I focus on studying English."],
+
+["give up + doing",
+"I won't give up studying English."],
+
+["enough + noun + to do",
+"I have enough time to study."],
+
+["too + adjective + to do",
+"I'm too tired to study."],
+
+["was/were going to + verb",
+"I was going to walk my dog."],
+
+["get ready to + verb",
+"I'm going to get ready to cook dinner."],
+
+["When + clause",
+"When I get home, I'll have dinner."],
+
+["Before + clause",
+"Before I go to bed, I'll study English."],
+
+["If + clause",
+"If I have the day off, I'll go out."],
+
+["Although + clause",
+"Although I'm tired, I still want to study."]
+];
+
+
+/* =========================
+   STORAGE
+========================= */
+
+const STORAGE_KEY="leonEnglishLab21";
+
+let data=JSON.parse(
+localStorage.getItem(STORAGE_KEY)||
+'{"xp":0,"correct":0,"streak":0,"lastDate":"","mistakes":[],"dailyDone":[]}'
+);
+
+
+function save(){
+
+localStorage.setItem(
+STORAGE_KEY,
+JSON.stringify(data)
+);
+
+updateHome();
+
+}
+
+
+/* =========================
+   HOME
+========================= */
+
+function updateHome(){
+
+const xp=data.xp;
+
+const level=Math.floor(xp/100)+1;
+
+const progress=xp%100;
+
+document.getElementById("homeXP").textContent=xp;
+
+document.getElementById("homeLevel").textContent=level;
+
+document.getElementById("homeStreak").textContent=data.streak;
+
+document.getElementById("levelProgress").style.width=
+progress+"%";
+
+document.getElementById("levelText").textContent=
+progress+" / 100 XP to next level";
+
+}
+
+
+/* =========================
+   NAVIGATION
+========================= */
+
+function showPage(id,button){
+
+document.querySelectorAll(".page").forEach(
+function(page){
+page.classList.remove("active");
+}
+);
+
+document.getElementById(id).classList.add("active");
+
+document.querySelectorAll("nav button").forEach(
+function(btn){
+btn.classList.remove("active");
+}
+);
+
+button.classList.add("active");
+
+if(id==="practice"){
+renderPractice();
+}
+
+if(id==="daily"){
+renderDaily();
+}
+
+if(id==="review"){
+renderReview();
+}
+
+if(id==="mistakes"){
+renderMistakes();
+}
+
+window.scrollTo(0,0);
+
+}
+
+
+/* =========================
+   PRACTICE
+========================= */
+
+let practiceIndex=0;
+
+
+function renderPractice(){
+
+const item=questions[
+practiceIndex%questions.length
+];
+
+let html="";
+
+html+=
+'<div class="question">'+
+(item.q)+
 '</div>';
+
+html+='<div class="options">';
+
+item.a.forEach(
+function(option,index){
+
+html+=
+'<button onclick="answerPractice('+index+')">'+
+option+
+'</button>';
+
+}
+);
+
+html+='</div>';
+
+html+=
+'<p class="mini">Question '+
+((practiceIndex%questions.length)+1)+
+' / '+
+questions.length+
+'</p>';
+
+document.getElementById("practiceArea").innerHTML=html;
+
 }
 
-function answer(n){
-let q=questions[current];
 
-if(n===q[2]){
-xp+=10;
-done++;
-localStorage.setItem("leonXP",xp);
-localStorage.setItem("leonDone",done);
+function answerPractice(answer){
 
-document.getElementById("app").innerHTML=
-'<div class="answer">✅ Correct! +10 XP<br>Keep going, Leon!</div>';
+const item=
+questions[practiceIndex%questions.length];
+
+const area=
+document.getElementById("practiceArea");
+
+
+if(answer===item.c){
+
+data.xp+=10;
+
+data.correct+=1;
+
+updateStreak();
+
+save();
+
+area.innerHTML=
+
+'<div class="feedback correct">'+
+'✅ Correct!<br>'+
+'<b>+10 XP</b><br>'+
+'<span class="mini">'+item.ex+'</span>'+
+'</div>'+
+'<button class="primary" onclick="nextPractice()">Next Question</button>';
+
 }else{
-document.getElementById("app").innerHTML=
-'<div class="answer">❌ Not quite.<br>Correct answer: <b>'+
-q[1][q[2]]+
-'</b><br>Let’s review this pattern.</div>';
+
+if(!data.mistakes.includes(item.q)){
+
+data.mistakes.push(item.q);
+
 }
 
-update();
+save();
+
+area.innerHTML=
+
+'<div class="feedback wrong">'+
+'❌ Not quite.<br>'+
+'Correct answer: <b>'+
+item.a[item.c]+
+'</b><br>'+
+'<span class="mini">'+
+item.ex+
+'</span>'+
+'</div>'+
+'<button class="primary" onclick="nextPractice()">Next Question</button>';
+
 }
 
-update();
-nextQuestion();
-</script><script>
-const challenges=[
-"我今天下班后想坐地铁回家。",
-"虽然我很累，但我还是想学英语。",
-"回家后，我会吃晚饭。",
-"看完电影后，我通常和女朋友去商场。",
-"我不会放弃学英语。"
+}
+
+
+function nextPractice(){
+
+practiceIndex++;
+
+renderPractice();
+
+}
+
+
+/* =========================
+   STREAK
+========================= */
+
+function updateStreak(){
+
+const today=
+new Date().toISOString().slice(0,10);
+
+if(data.lastDate!==today){
+
+data.streak+=1;
+
+data.lastDate=today;
+
+}
+
+}
+
+
+/* =========================
+   DAILY CHALLENGE
+========================= */
+
+function getDaily(){
+
+const day=
+Math.floor(
+new Date().getTime()/
+86400000
+);
+
+return dailyChallenges[
+day%dailyChallenges.length
 ];
 
-const answers=[
-"After I get off work, I'll take the subway home.",
-"Although I'm tired, I still want to study English.",
-"After getting home, I'll have dinner.",
-"After watching a movie, I usually go to the mall with my girlfriend.",
-"I won't give up studying English."
-];
-
-function showChallenge(){
-let day=new Date().getDate();
-let i=day%challenges.length;
-
-document.getElementById("challenge").innerHTML=
-'<div class="question">🇨🇳 '+challenges[i]+'</div>'+
-'<div class="answer">🇬🇧 '+answers[i]+'</div>';
 }
 
-showChallenge();
+
+function renderDaily(){
+
+const item=getDaily();
+
+document.getElementById("dailyArea").innerHTML=
+
+'<div class="challenge-box">'+
+
+'<div class="question">🇨🇳 '+
+item.cn+
+'</div>'+
+
+'<p class="mini">Try to say it in English first.</p>'+
+
+'<input id="dailyInput" placeholder="Type your English answer...">'+
+
+'<br><br>'+
+
+'<button class="primary" onclick="checkDaily()">'+
+"Check My Answer"+
+'</button>'+
+
+'<div id="dailyResult"></div>'+
+
+'</div>';
+
+}
+
+
+function checkDaily(){
+
+const item=getDaily();
+
+const input=
+document.getElementById("dailyInput").value.trim();
+
+let html="";
+
+if(input.length>0){
+
+html+=
+'<div class="feedback">'+
+'📝 Your answer:<br>'+
+'<b>'+
+escapeHTML(input)+
+'</b>'+
+'</div>';
+
+}
+
+html+=
+'<div class="feedback correct">'+
+'🇬🇧 Correct example:<br>'+
+'<b>'+
+item.en+
+'</b>'+
+'</div>';
+
+if(input.length>0){
+
+data.xp+=5;
+
+save();
+
+html+=
+'<p class="mini">+5 XP for practicing!</p>';
+
+}
+
+document.getElementById("dailyResult").innerHTML=html;
+
+}
+
+
+/* =========================
+   REVIEW
+========================= */
+
+function renderReview(){
+
+let html="";
+
+patterns.forEach(
+function(item){
+
+html+=
+'<div class="pattern">'+
+'<b>'+
+item[0]+
+'</b>'+
+item[1]+
+'</div>';
+
+}
+);
+
+document.getElementById("reviewArea").innerHTML=html;
+
+}
+
+
+/* =========================
+   MISTAKES
+========================= */
+
+function renderMistakes(){
+
+const area=
+document.getElementById("mistakeArea");
+
+if(data.mistakes.length===0){
+
+area.innerHTML=
+'<div class="feedback correct">'+
+'🎉 No mistakes saved yet!'+
+'<br>Keep practicing!'+
+'</div>';
+
+return;
+
+}
+
+let html="";
+
+data.mistakes.forEach(
+function(item,index){
+
+html+=
+'<div class="mini" style="padding:12px;background:#f7f9fc;border-radius:10px;margin:8px 0">'+
+(index+1)+'. '+
+escapeHTML(item)+
+'</div>';
+
+}
+);
+
+html+=
+'<br><button class="danger" onclick="clearMistakes()">Clear Mistakes</button>';
+
+area.innerHTML=html;
+
+}
+
+
+function clearMistakes(){
+
+if(confirm("Clear all saved mistakes?")){
+
+data.mistakes=[];
+
+save();
+
+renderMistakes();
+
+}
+
+}
+
+
+/* =========================
+   SECURITY / TEXT
+========================= */
+
+function escapeHTML(text){
+
+return text.replace(
+/[&<>"']/g,
+function(char){
+
+return {
+"&":"&amp;",
+"<":"&lt;",
+">":"&gt;",
+'"':"&quot;",
+"'":"&#039;"
+}[char];
+
+}
+);
+
+}
+
+
+/* =========================
+   START
+========================= */
+
+updateHome();
+
+renderPractice();
+
 </script>
+
 </body>
 </html>
