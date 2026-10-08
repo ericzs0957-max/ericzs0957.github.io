@@ -2,68 +2,465 @@
 <html lang="zh-CN">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Leon 英语学习中心</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#f5f5f7">
+<title>Leon English Lab 3.0</title>
 
 <style>
 *{
   box-sizing:border-box;
+  -webkit-tap-highlight-color:transparent;
+}
+
+:root{
+  --bg:#f5f5f7;
+  --card:rgba(255,255,255,.78);
+  --white:#fff;
+  --text:#1d1d1f;
+  --sub:#6e6e73;
+  --line:rgba(0,0,0,.08);
+  --blue:#0071e3;
+  --blue2:#147ce5;
+  --green:#34c759;
+  --red:#ff3b30;
+  --orange:#ff9500;
+  --shadow:0 10px 35px rgba(0,0,0,.07);
+  --radius:24px;
+}
+
+body.dark{
+  --bg:#101010;
+  --card:rgba(30,30,32,.82);
+  --white:#1e1e20;
+  --text:#f5f5f7;
+  --sub:#a1a1a6;
+  --line:rgba(255,255,255,.09);
+  --shadow:0 12px 35px rgba(0,0,0,.3);
 }
 
 body{
   margin:0;
-  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;
-  background:#f4f7fb;
-  color:#1f2937;
+  background:var(--bg);
+  color:var(--text);
+  font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display",
+  "SF Pro Text","Helvetica Neue",Arial,sans-serif;
+  line-height:1.55;
+  padding-bottom:90px;
 }
 
-header{
-  background:linear-gradient(135deg,#1e3a8a,#2563eb);
-  color:white;
-  padding:30px 18px;
+button,input,select{
+  font:inherit;
+}
+
+button{
+  border:0;
+  cursor:pointer;
+}
+
+.app{
+  max-width:1100px;
+  margin:auto;
+  padding:20px 18px 110px;
+}
+
+.topbar{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  margin-bottom:25px;
+}
+
+.brand{
+  font-size:25px;
+  font-weight:700;
+  letter-spacing:-.7px;
+}
+
+.brand span{
+  color:var(--blue);
+}
+
+.icon-btn{
+  width:42px;
+  height:42px;
+  border-radius:50%;
+  background:var(--card);
+  color:var(--text);
+  box-shadow:var(--shadow);
+  border:1px solid var(--line);
+}
+
+.hero{
+  padding:25px 4px 18px;
+}
+
+.hero small{
+  color:var(--sub);
+  font-size:15px;
+}
+
+.hero h1{
+  font-size:38px;
+  line-height:1.1;
+  letter-spacing:-1.5px;
+  margin:7px 0;
+}
+
+.hero p{
+  margin:0;
+  color:var(--sub);
+}
+
+.grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:15px;
+}
+
+.grid3{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:15px;
+}
+
+.card{
+  background:var(--card);
+  backdrop-filter:blur(20px);
+  -webkit-backdrop-filter:blur(20px);
+  border:1px solid var(--line);
+  border-radius:var(--radius);
+  padding:20px;
+  box-shadow:var(--shadow);
+}
+
+.card h2,
+.card h3{
+  margin-top:0;
+  letter-spacing:-.5px;
+}
+
+.stat{
+  min-height:120px;
+}
+
+.stat .number{
+  font-size:32px;
+  font-weight:700;
+  letter-spacing:-1px;
+}
+
+.stat .label{
+  color:var(--sub);
+  font-size:14px;
+}
+
+.progress{
+  height:8px;
+  background:rgba(127,127,127,.16);
+  border-radius:20px;
+  overflow:hidden;
+  margin-top:13px;
+}
+
+.progress i{
+  display:block;
+  height:100%;
+  width:0%;
+  background:var(--blue);
+  border-radius:20px;
+}
+
+.primary{
+  background:var(--blue);
+  color:#fff;
+  border-radius:18px;
+  padding:13px 19px;
+  font-weight:600;
+  box-shadow:0 7px 20px rgba(0,113,227,.2);
+}
+
+.secondary{
+  background:rgba(127,127,127,.12);
+  color:var(--text);
+  border-radius:18px;
+  padding:12px 18px;
+}
+
+.danger{
+  background:rgba(255,59,48,.1);
+  color:var(--red);
+  border-radius:15px;
+  padding:10px 14px;
+}
+
+.section{
+  margin-top:24px;
+}
+
+.section-title{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:12px;
+}
+
+.section-title h2{
+  margin:0;
+  font-size:21px;
+  letter-spacing:-.5px;
+}
+
+.muted{
+  color:var(--sub);
+}
+
+.big-card{
+  padding:30px 22px;
   text-align:center;
 }
 
-header h1{
-  margin:0 0 8px;
-  font-size:28px;
+.word{
+  font-size:42px;
+  font-weight:750;
+  letter-spacing:-1.5px;
+  margin:10px 0 2px;
 }
 
-header p{
-  margin:0;
-  opacity:.9;
+.ipa{
+  color:var(--blue);
+  font-size:20px;
+  margin-bottom:10px;
 }
 
-nav{
+.meaning{
+  font-size:21px;
+  margin-bottom:17px;
+}
+
+.example{
+  background:rgba(127,127,127,.09);
+  border-radius:18px;
+  padding:15px;
+  text-align:left;
+  margin-top:18px;
+}
+
+.example .en{
+  font-size:17px;
+  font-weight:600;
+}
+
+.example .cn{
+  color:var(--sub);
+  margin-top:5px;
+}
+
+.actions{
   display:flex;
+  gap:9px;
+  flex-wrap:wrap;
+  justify-content:center;
+  margin-top:18px;
+}
+
+.category-row{
+  display:flex;
+  gap:8px;
   overflow-x:auto;
-  background:white;
-  border-bottom:1px solid #e5e7eb;
-  position:sticky;
-  top:0;
-  z-index:20;
+  padding:4px 0 12px;
+  scrollbar-width:none;
 }
 
-nav button{
-  flex:0 0 auto;
-  border:0;
-  background:white;
+.category-row::-webkit-scrollbar{
+  display:none;
+}
+
+.chip{
+  white-space:nowrap;
+  padding:9px 14px;
+  border-radius:16px;
+  background:rgba(127,127,127,.1);
+  color:var(--text);
+}
+
+.chip.active{
+  background:var(--text);
+  color:var(--bg);
+}
+
+.search{
+  width:100%;
+  padding:14px 17px;
+  border-radius:17px;
+  border:1px solid var(--line);
+  outline:none;
+  background:var(--card);
+  color:var(--text);
+  margin-bottom:12px;
+}
+
+.search:focus{
+  border-color:var(--blue);
+}
+
+.library-count{
+  color:var(--sub);
+  font-size:13px;
+  margin-bottom:10px;
+}
+
+.list{
+  display:grid;
+  gap:9px;
+  max-height:500px;
+  overflow:auto;
+  padding-right:2px;
+}
+
+.list-item{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:12px;
+  padding:14px;
+  background:rgba(127,127,127,.07);
+  border-radius:17px;
+}
+
+.list-item strong{
+  display:block;
+}
+
+.list-item small{
+  color:var(--sub);
+}
+
+.play{
+  width:39px;
+  height:39px;
+  border-radius:50%;
+  background:var(--blue);
+  color:#fff;
+  flex-shrink:0;
+}
+
+.practice-question{
+  font-size:23px;
+  font-weight:650;
+  margin:15px 0 20px;
+}
+
+.option{
+  width:100%;
+  text-align:left;
   padding:14px 15px;
-  font-size:14px;
-  color:#4b5563;
+  border-radius:16px;
+  background:rgba(127,127,127,.08);
+  color:var(--text);
+  margin:6px 0;
+  border:1px solid transparent;
 }
 
-nav button.active{
-  color:#2563eb;
+.option.correct{
+  background:rgba(52,199,89,.14);
+  border-color:var(--green);
+}
+
+.option.wrong{
+  background:rgba(255,59,48,.12);
+  border-color:var(--red);
+}
+
+.feedback{
+  margin-top:14px;
+  min-height:25px;
+  font-weight:600;
+}
+
+.challenge-box{
+  text-align:center;
+  padding:28px 15px;
+}
+
+.challenge-cn{
+  font-size:24px;
   font-weight:700;
-  border-bottom:3px solid #2563eb;
+  margin:15px 0;
 }
 
-main{
-  max-width:950px;
-  margin:auto;
+.answer{
+  display:none;
+  background:rgba(0,113,227,.08);
+  border-radius:18px;
   padding:16px;
+  margin-top:15px;
+}
+
+.answer.show{
+  display:block;
+}
+
+.pattern{
+  padding:15px;
+  border-radius:17px;
+  background:rgba(127,127,127,.07);
+  margin-bottom:9px;
+}
+
+.pattern strong{
+  color:var(--blue);
+}
+
+.xp{
+  color:var(--orange);
+  font-weight:700;
+}
+
+.empty{
+  text-align:center;
+  color:var(--sub);
+  padding:30px;
+}
+
+.bottom-nav{
+  position:fixed;
+  left:50%;
+  transform:translateX(-50%);
+  bottom:10px;
+  width:min(700px,calc(100% - 20px));
+  background:rgba(255,255,255,.82);
+  border:1px solid rgba(0,0,0,.08);
+  backdrop-filter:blur(25px);
+  -webkit-backdrop-filter:blur(25px);
+  border-radius:25px;
+  display:grid;
+  grid-template-columns:repeat(5,1fr);
+  padding:8px;
+  box-shadow:0 10px 40px rgba(0,0,0,.14);
+  z-index:99;
+}
+
+body.dark .bottom-nav{
+  background:rgba(30,30,32,.86);
+}
+
+.nav-btn{
+  background:transparent;
+  color:var(--sub);
+  border-radius:18px;
+  padding:8px 2px;
+  font-size:11px;
+}
+
+.nav-btn.active{
+  color:var(--blue);
+  background:rgba(0,113,227,.09);
+}
+
+.nav-icon{
+  display:block;
+  font-size:20px;
+  margin-bottom:2px;
 }
 
 .page{
@@ -74,250 +471,56 @@ main{
   display:block;
 }
 
-.card{
-  background:white;
-  border-radius:16px;
-  padding:18px;
-  margin-bottom:16px;
-  box-shadow:0 4px 18px rgba(0,0,0,.06);
-}
-
-h2{
-  margin-top:0;
-}
-
-h3{
-  margin-bottom:8px;
-}
-
-.muted{
-  color:#6b7280;
-}
-
-.stat-grid{
-  display:grid;
-  grid-template-columns:repeat(4,1fr);
-  gap:10px;
-}
-
-.stat{
-  background:#eff6ff;
-  border-radius:14px;
-  padding:14px 8px;
-  text-align:center;
-}
-
-.stat b{
-  display:block;
-  font-size:25px;
-  color:#2563eb;
-}
-
-.progress{
-  width:100%;
-  height:12px;
-  background:#e5e7eb;
-  border-radius:20px;
-  overflow:hidden;
-}
-
-.progress-bar{
-  height:100%;
-  width:0%;
-  background:#2563eb;
-  transition:.3s;
-}
-
-.pattern{
-  background:#f8fafc;
-  border-left:4px solid #2563eb;
-  border-radius:8px;
-  padding:12px;
-  margin:10px 0;
-}
-
-.pattern strong{
-  display:block;
-  color:#1d4ed8;
-  margin-bottom:5px;
-}
-
-.tag{
+.badge{
   display:inline-block;
-  padding:4px 8px;
-  border-radius:20px;
-  background:#dbeafe;
-  color:#1d4ed8;
+  padding:5px 9px;
+  background:rgba(0,113,227,.1);
+  color:var(--blue);
+  border-radius:10px;
   font-size:12px;
-  margin:2px;
 }
 
-button{
-  cursor:pointer;
+.toast{
+  position:fixed;
+  left:50%;
+  bottom:92px;
+  transform:translateX(-50%) translateY(20px);
+  background:#1d1d1f;
+  color:#fff;
+  padding:12px 18px;
+  border-radius:15px;
+  opacity:0;
+  pointer-events:none;
+  transition:.25s;
+  z-index:200;
 }
 
-.primary{
-  border:0;
-  background:#2563eb;
-  color:white;
-  border-radius:10px;
-  padding:11px 16px;
-  font-weight:700;
+.toast.show{
+  opacity:1;
+  transform:translateX(-50%) translateY(0);
 }
 
-.green{
-  border:0;
-  background:#16a34a;
-  color:white;
-  border-radius:10px;
-  padding:10px 14px;
-  font-weight:700;
-}
-
-.gray{
-  border:0;
-  background:#eef2f7;
-  color:#374151;
-  border-radius:10px;
-  padding:10px 14px;
-}
-
-.option{
-  display:block;
-  width:100%;
-  text-align:left;
-  background:#f8fafc;
-  border:1px solid #e5e7eb;
-  border-radius:10px;
-  padding:13px;
-  margin:8px 0;
-  font-size:15px;
-}
-
-.option:hover{
-  background:#eff6ff;
-}
-
-input{
-  width:100%;
-  padding:12px;
-  border:1px solid #d1d5db;
-  border-radius:10px;
-  font-size:16px;
-}
-
-.feedback{
-  margin-top:12px;
-  font-weight:600;
-}
-
-.correct{
-  color:#15803d;
-}
-
-.wrong{
-  color:#dc2626;
-}
-
-.hidden{
-  display:none;
-}
-
-.word-grid{
-  display:grid;
-  grid-template-columns:repeat(2,1fr);
-  gap:10px;
-}
-
-.word-card{
-  border:1px solid #e5e7eb;
-  border-radius:12px;
-  padding:13px;
-  background:#fff;
-}
-
-.word{
-  font-size:19px;
-  font-weight:700;
-  color:#1e3a8a;
-}
-
-.ipa{
-  color:#7c3aed;
-  margin:3px 0;
-}
-
-.meaning{
-  color:#374151;
-}
-
-.audio{
-  border:0;
-  background:#eff6ff;
-  color:#1d4ed8;
-  border-radius:8px;
-  padding:7px 10px;
-  margin-top:7px;
-}
-
-.phrase{
-  border-bottom:1px solid #eee;
-  padding:13px 0;
-}
-
-.phrase:last-child{
-  border-bottom:0;
-}
-
-.challenge-box{
-  background:#f0fdf4;
-  border-left:4px solid #16a34a;
-  padding:14px;
-  border-radius:8px;
-}
-
-.answer-box{
-  margin-top:12px;
-  padding:12px;
-  background:#eff6ff;
-  border-radius:10px;
-}
-
-.history-item{
-  padding:12px 0;
-  border-bottom:1px solid #eee;
-}
-
-.history-item:last-child{
-  border-bottom:0;
-}
-
-footer{
-  text-align:center;
-  padding:30px 15px;
-  color:#6b7280;
-}
-
-@media(max-width:650px){
-
-  header h1{
-    font-size:24px;
+@media(max-width:700px){
+  .app{
+    padding-left:14px;
+    padding-right:14px;
   }
 
-  main{
-    padding:12px;
-  }
-
-  .stat-grid{
-    grid-template-columns:repeat(2,1fr);
-  }
-
-  .word-grid{
+  .grid,
+  .grid3{
     grid-template-columns:1fr;
   }
 
-  nav button{
-    padding:12px 13px;
+  .hero h1{
+    font-size:33px;
+  }
+
+  .word{
+    font-size:38px;
+  }
+
+  .card{
+    border-radius:21px;
   }
 }
 </style>
@@ -325,1863 +528,1788 @@ footer{
 
 <body>
 
-<header>
-  <h1>Leon 英语学习中心</h1>
-  <p>每天一点点，把英语真正用到生活里</p>
+<div class="app">
+
+<header class="topbar">
+  <div class="brand">Leon <span>English</span></div>
+  <button class="icon-btn" onclick="toggleDark()">☾</button>
 </header>
 
-<nav>
 
-<button class="active" data-page="home">🏠 首页</button>
-<button data-page="practice">🎮 练习中心</button>
-<button data-page="challenge">🎯 每日挑战</button>
-<button data-page="words">📚 高频词汇</button>
-<button data-page="phrases">💬 常用词组</button>
-<button data-page="sentences">🗣️ 生活短句</button>
-<button data-page="review">🔄 滚动复习</button>
-<button data-page="mistakes">❌ 错题本</button>
-<button data-page="history">📖 学习记录</button>
+<!-- HOME -->
+<section id="home" class="page active">
+
+<div class="hero">
+  <small id="greeting">Good morning, Leon.</small>
+  <h1>Keep going.</h1>
+  <p>Small steps every day.</p>
+</div>
+
+<div class="grid3">
+
+<div class="card stat">
+  <div class="label">LEVEL</div>
+  <div class="number" id="level">1</div>
+  <div class="progress"><i id="levelBar"></i></div>
+</div>
+
+<div class="card stat">
+  <div class="label">XP</div>
+  <div class="number" id="xp">0</div>
+  <div class="label">Keep learning.</div>
+</div>
+
+<div class="card stat">
+  <div class="label">STREAK 🔥</div>
+  <div class="number" id="streak">0</div>
+  <div class="label">days</div>
+</div>
+
+</div>
+
+<div class="section">
+<div class="card">
+  <span class="badge">TODAY</span>
+  <h2>Today's English</h2>
+  <p class="muted">10 words · 5 phrases · 5 sentences</p>
+  <button class="primary" onclick="showPage('library')">Start Today's Lesson</button>
+</div>
+</div>
+
+<div class="section">
+
+<div class="section-title">
+  <h2>Quick Practice</h2>
+  <span class="muted">Practice</span>
+</div>
+
+<div class="grid">
+
+<div class="card">
+  <h3>Vocabulary</h3>
+  <p class="muted">Learn useful daily words.</p>
+  <button class="secondary" onclick="showPage('library')">Open</button>
+</div>
+
+<div class="card">
+  <h3>Phrases</h3>
+  <p class="muted">Real spoken English.</p>
+  <button class="secondary" onclick="openPhrases()">Open</button>
+</div>
+
+</div>
+</div>
+
+<div class="section">
+<div class="card">
+  <h3>Learning Progress</h3>
+  <p>Words <b id="wordProgress">0</b> / 500+</p>
+  <div class="progress"><i id="wordBar"></i></div>
+
+  <p>Phrases <b id="phraseProgress">0</b> / 300+</p>
+  <div class="progress"><i id="phraseBar"></i></div>
+
+  <p>Sentences <b id="sentenceProgress">0</b> / 300+</p>
+  <div class="progress"><i id="sentenceBar"></i></div>
+</div>
+</div>
+
+</section>
+
+
+<!-- LIBRARY -->
+<section id="library" class="page">
+
+<div class="hero">
+  <small>LEON ENGLISH LIBRARY</small>
+  <h1>Learn naturally.</h1>
+  <p>Words, phrases and sentences for real life.</p>
+</div>
+
+<input id="search" class="search"
+placeholder="Search English or Chinese..."
+oninput="searchLibrary()">
+
+<div class="category-row">
+<button class="chip active" onclick="setCategory('all',this)">全部</button>
+<button class="chip" onclick="setCategory('work',this)">工作</button>
+<button class="chip" onclick="setCategory('life',this)">生活</button>
+<button class="chip" onclick="setCategory('food',this)">吃饭</button>
+<button class="chip" onclick="setCategory('commute',this)">通勤</button>
+<button class="chip" onclick="setCategory('travel',this)">旅行</button>
+<button class="chip" onclick="setCategory('emotion',this)">情绪</button>
+<button class="chip" onclick="setCategory('shopping',this)">购物</button>
+<button class="chip" onclick="setCategory('home',this)">家庭</button>
+<button class="chip" onclick="setCategory('social',this)">社交</button>
+</div>
+
+<div class="section">
+
+<div class="card big-card">
+
+<div id="libraryType" class="badge">WORD</div>
+
+<div class="word" id="libraryWord">tired</div>
+<div class="ipa" id="libraryIPA">/taɪərd/</div>
+<div class="meaning" id="libraryMeaning">累的</div>
+
+<button class="primary" onclick="speakCurrent()">🔊 Listen</button>
+
+<div class="example">
+<div class="en" id="libraryExample">
+I'm tired after work.
+</div>
+<div class="cn" id="libraryExampleCN">
+下班后我很累。
+</div>
+</div>
+
+<div class="actions">
+<button class="secondary" onclick="previousItem()">← Previous</button>
+<button class="secondary" onclick="randomItem()">Random</button>
+<button class="secondary" onclick="nextItem()">Next →</button>
+</div>
+
+<p class="muted" id="libraryCounter">1 / 1</p>
+
+</div>
+
+</div>
+
+<div class="section">
+<div class="card">
+<h3>Library</h3>
+<div class="library-count" id="libraryCount"></div>
+<div id="libraryList" class="list"></div>
+</div>
+</div>
+
+</section>
+
+
+<!-- PRACTICE -->
+<section id="practice" class="page">
+
+<div class="hero">
+<small>PRACTICE CENTER</small>
+<h1>Practice makes progress.</h1>
+<p>大量练习，自动记录错题。</p>
+</div>
+
+<div class="card">
+<span class="badge">QUESTION</span>
+<div class="practice-question" id="question"></div>
+<div id="options"></div>
+<div class="feedback" id="feedback"></div>
+
+<div class="actions">
+<button class="secondary" onclick="newQuestion()">Next Question</button>
+<button class="secondary" onclick="showAnswer()">🔊 Answer</button>
+</div>
+
+<p class="muted">
+Question <span id="questionNumber">1</span>
+</p>
+</div>
+
+<div class="section">
+<div class="grid3">
+<div class="card stat">
+<div class="label">CORRECT</div>
+<div class="number" id="correctCount">0</div>
+</div>
+
+<div class="card stat">
+<div class="label">MISTAKES</div>
+<div class="number" id="mistakeCount">0</div>
+</div>
+
+<div class="card stat">
+<div class="label">XP</div>
+<div class="number xp" id="practiceXP">0</div>
+</div>
+</div>
+</div>
+
+</section>
+
+
+<!-- CHALLENGE -->
+<section id="challenge" class="page">
+
+<div class="hero">
+<small>DAILY CHALLENGE</small>
+<h1>Today's challenge.</h1>
+<p>One small challenge every day.</p>
+</div>
+
+<div class="card challenge-box">
+
+<span class="badge">TRANSLATE</span>
+
+<div class="challenge-cn" id="challengeCN"></div>
+
+<input id="challengeInput"
+class="search"
+placeholder="Type your English answer...">
+
+<button class="primary" onclick="checkChallenge()">Check My Answer</button>
+
+<div id="challengeFeedback" class="feedback"></div>
+
+<div id="challengeAnswer" class="answer"></div>
+
+<div class="actions">
+<button class="secondary" onclick="speakChallenge()">🔊 Listen</button>
+<button class="secondary" onclick="showChallengeAnswer()">Show Answer</button>
+</div>
+
+</div>
+
+<div class="section">
+<div class="card">
+<h3>Daily Challenge Progress</h3>
+<p class="muted">Complete today's challenge to earn XP.</p>
+<div class="progress">
+<i id="challengeBar"></i>
+</div>
+</div>
+</div>
+
+</section>
+
+
+<!-- REVIEW -->
+<section id="review" class="page">
+
+<div class="hero">
+<small>REVIEW</small>
+<h1>Keep it fresh.</h1>
+<p>Review the patterns you've already learned.</p>
+</div>
+
+<div id="patterns"></div>
+
+<div class="section">
+<div class="card">
+<h3>Today's Review</h3>
+<p>Try saying these sentences aloud:</p>
+
+<div class="pattern">
+I usually get off work and take the subway home.
+</div>
+
+<div class="pattern">
+After getting home, I take a shower and have dinner.
+</div>
+
+<div class="pattern">
+I’m going to focus on studying English.
+</div>
+
+<div class="pattern">
+I want to keep improving my English.
+</div>
+
+<div class="pattern">
+I won’t give up.
+</div>
+
+<div class="pattern">
+Although I’m tired, I still want to study English.
+</div>
+
+</div>
+</div>
+
+</section>
+
+
+<!-- MISTAKES -->
+<section id="mistakes" class="page">
+
+<div class="hero">
+<small>MISTAKES</small>
+<h1>Turn mistakes into progress.</h1>
+<p>Your difficult questions are saved here.</p>
+</div>
+
+<div class="card">
+<div id="mistakeList"></div>
+
+<div class="actions">
+<button class="danger" onclick="clearMistakes()">Clear Mistakes</button>
+</div>
+</div>
+
+</section>
+
+
+<!-- DAILY CHAT -->
+<section id="chat" class="page">
+
+<div class="hero">
+<small>DAILY CHAT</small>
+<h1>Tell me about your day.</h1>
+<p>Real life first. English second.</p>
+</div>
+
+<div class="card">
+<h2>Today's topic</h2>
+
+<div class="pattern">
+<b>What are you doing today?</b>
+<br>
+<span class="muted">今天你在做什么？</span>
+</div>
+
+<div class="pattern">
+<b>How are you feeling today?</b>
+<br>
+<span class="muted">你今天感觉怎么样？</span>
+</div>
+
+<div class="pattern">
+<b>What will you do after work?</b>
+<br>
+<span class="muted">下班后你会做什么？</span>
+</div>
+
+<div class="pattern">
+<b>What did you do yesterday?</b>
+<br>
+<span class="muted">你昨天做了什么？</span>
+</div>
+
+<p class="muted">
+现在直接在 ChatGPT 里回答我，我们继续 Daily Chat。
+</p>
+
+</div>
+
+</section>
+
+
+</div>
+
+
+<!-- NAVIGATION -->
+<nav class="bottom-nav">
+
+<button class="nav-btn active" onclick="showPage('home')">
+<span class="nav-icon">⌂</span>
+Home
+</button>
+
+<button class="nav-btn" onclick="showPage('library')">
+<span class="nav-icon">📚</span>
+Library
+</button>
+
+<button class="nav-btn" onclick="showPage('practice')">
+<span class="nav-icon">✓</span>
+Practice
+</button>
+
+<button class="nav-btn" onclick="showPage('challenge')">
+<span class="nav-icon">⚡</span>
+Challenge
+</button>
+
+<button class="nav-btn" onclick="showPage('review')">
+<span class="nav-icon">↻</span>
+Review
+</button>
 
 </nav>
 
-<main>
-
-<!-- 首页 -->
-
-<section id="home" class="page active">
-
-<div class="card">
-
-<h2>👋 Leon，欢迎回来</h2>
-
-<p>
-这里是你的个人英语学习空间。
-界面使用中文，但真正学习和练习的内容保持英文。
-</p>
-
-<div class="stat-grid">
-
-<div class="stat">
-<b id="xp">0</b>
-经验值
-</div>
-
-<div class="stat">
-<b id="level">1</b>
-等级
-</div>
-
-<div class="stat">
-<b id="streak">0</b>
-连续学习
-</div>
-
-<div class="stat">
-<b id="mistakeCount">0</b>
-错题
-</div>
-
-</div>
-
-</div>
-
-<div class="card">
-
-<h2>📈 当前等级进度</h2>
-
-<p id="levelProgressText">
-0 / 100 XP
-</p>
-
-<div class="progress">
-<div id="progressBar" class="progress-bar"></div>
-</div>
-
-<p id="levelHint" class="muted"></p>
-
-</div>
-
-<div class="card">
-
-<h2>🗺️ 我的核心学习地图</h2>
-
-<div class="pattern">
-<strong>After + doing</strong>
-做完……之后
-<br>
-After getting home, I have dinner.
-</div>
-
-<div class="pattern">
-<strong>keep + doing</strong>
-继续做……
-<br>
-I want to keep studying English.
-</div>
-
-<div class="pattern">
-<strong>focus on + doing</strong>
-专注于做……
-<br>
-I focus on studying English.
-</div>
-
-<div class="pattern">
-<strong>give up + doing</strong>
-放弃做……
-<br>
-I won't give up studying English.
-</div>
-
-<div class="pattern">
-<strong>enough + noun + to do</strong>
-有足够的……去做……
-<br>
-I have enough time to study.
-</div>
-
-<div class="pattern">
-<strong>too + adjective + to do</strong>
-太……而不能……
-<br>
-I'm too tired to study.
-</div>
-
-<div class="pattern">
-<strong>was / were going to + verb</strong>
-原本打算……
-<br>
-I was going to walk my dog.
-</div>
-
-<div class="pattern">
-<strong>get ready to + verb</strong>
-准备做……
-<br>
-I'm getting ready to cook dinner.
-</div>
-
-</div>
-
-</section>
-
-
-<!-- 练习中心 -->
-
-<section id="practice" class="page">
-
-<div class="card">
-
-<h2>🎮 练习中心</h2>
-
-<p class="muted">
-这里有大量生活英语练习。答对 +10 XP，答错会进入错题本。
-</p>
-
-<div id="practiceBox"></div>
-
-</div>
-
-</section>
-
-
-<!-- 每日挑战 -->
-
-<section id="challenge" class="page">
-
-<div class="card">
-
-<h2>🎯 每日挑战</h2>
-
-<p>
-每天完成一个真实生活英语任务。
-</p>
-
-<div class="challenge-box">
-
-<p id="challengeQuestion"></p>
-
-</div>
-
-<br>
-
-<input
-id="challengeInput"
-type="text"
-placeholder="输入你的英文答案"
-/>
-
-<br><br>
-
-<button class="primary" id="challengeCheck">
-检查答案
-</button>
-
-<button class="gray" id="challengeShow">
-查看参考答案
-</button>
-
-<div id="challengeResult" class="feedback"></div>
-
-<div id="challengeAnswer" class="answer-box hidden"></div>
-
-</div>
-
-</section>
-
-
-<!-- 高频词汇 -->
-
-<section id="words" class="page">
-
-<div class="card">
-
-<h2>📚 高频生活词汇</h2>
-
-<p class="muted">
-点击 🔊 可以听英文发音。
-</p>
-
-<div id="wordList" class="word-grid"></div>
-
-</div>
-
-</section>
-
-
-<!-- 常用词组 -->
-
-<section id="phrases" class="page">
-
-<div class="card">
-
-<h2>💬 生活常用词组</h2>
-
-<div id="phraseList"></div>
-
-</div>
-
-</section>
-
-
-<!-- 生活短句 -->
-
-<section id="sentences" class="page">
-
-<div class="card">
-
-<h2>🗣️ 生活常用短句</h2>
-
-<div id="sentenceList"></div>
-
-</div>
-
-</section>
-
-
-<!-- 滚动复习 -->
-
-<section id="review" class="page">
-
-<div class="card">
-
-<h2>🔄 滚动复习</h2>
-
-<p class="muted">
-这里会一直保留你已经学过的核心结构。
-以后新课程也继续加入。
-</p>
-
-<div id="reviewList"></div>
-
-</div>
-
-</section>
-
-
-<!-- 错题 -->
-
-<section id="mistakes" class="page">
-
-<div class="card">
-
-<h2>❌ 错题本</h2>
-
-<p class="muted">
-答错的题会自动保存。
-</p>
-
-<div id="mistakeList"></div>
-
-<br>
-
-<button class="gray" id="clearMistakes">
-清空错题本
-</button>
-
-</div>
-
-</section>
-
-
-<!-- 学习记录 -->
-
-<section id="history" class="page">
-
-<div class="card">
-
-<h2>📖 学习记录</h2>
-
-<p id="historySummary"></p>
-
-<div id="historyList"></div>
-
-</div>
-
-</section>
-
-</main>
-
-<footer>
-Leon 英语学习中心 · 小步前进，持续升级 🚀
-</footer>
+<div id="toast" class="toast"></div>
 
 
 <script>
 
-"use strict";
-
-
 /* =========================
-   数据
+   DATA
 ========================= */
-
-const practiceQuestions = [
-
-{
-q:"下班后，我通常坐地铁回家。",
-a:"After getting off work, I usually take the subway home.",
-tag:"After + doing"
-},
-
-{
-q:"我想继续学习英语。",
-a:"I want to keep studying English.",
-tag:"keep + doing"
-},
-
-{
-q:"我想专注于提高我的英语。",
-a:"I want to focus on improving my English.",
-tag:"focus on + doing"
-},
-
-{
-q:"我不会放弃学习英语。",
-a:"I won't give up studying English.",
-tag:"give up + doing"
-},
-
-{
-q:"我有足够的时间学习英语。",
-a:"I have enough time to study English.",
-tag:"enough + noun + to do"
-},
-
-{
-q:"我太累了，不能学习英语。",
-a:"I'm too tired to study English.",
-tag:"too + adjective + to do"
-},
-
-{
-q:"我原本打算遛狗。",
-a:"I was going to walk my dog.",
-tag:"was going to"
-},
-
-{
-q:"我准备做晚饭。",
-a:"I'm getting ready to cook dinner.",
-tag:"get ready to"
-},
-
-{
-q:"你每天学习英语吗？",
-a:"Do you study English every day?",
-tag:"Do you"
-},
-
-{
-q:"你现在正在学习英语吗？",
-a:"Are you studying English now?",
-tag:"Are you"
-},
-
-{
-q:"你昨天学习英语了吗？",
-a:"Did you study English yesterday?",
-tag:"Did you"
-},
-
-{
-q:"我下班后会很累，但我还是想学习英语。",
-a:"I'll be tired after work, but I still want to study English.",
-tag:"will be"
-},
-
-{
-q:"当我到家时，我会吃晚饭。",
-a:"When I get home, I'll have dinner.",
-tag:"When"
-},
-
-{
-q:"如果我有时间，我会学习英语。",
-a:"If I have time, I'll study English.",
-tag:"If"
-},
-
-{
-q:"虽然我很累，我还是想继续学习。",
-a:"Although I'm tired, I still want to keep studying.",
-tag:"Although"
-},
-
-{
-q:"我通常在下班后学习英语。",
-a:"I usually study English after work.",
-tag:"usually"
-},
-
-{
-q:"我今天有很多工作。",
-a:"I have a lot of work today.",
-tag:"work"
-},
-
-{
-q:"我现在有一些空闲时间。",
-a:"I have some free time now.",
-tag:"free time"
-},
-
-{
-q:"我想休息一会儿。",
-a:"I want to rest for a while.",
-tag:"for a while"
-},
-
-{
-q:"我会玩一会儿手机。",
-a:"I'll play on my phone for a while.",
-tag:"for a while"
-},
-
-{
-q:"我通常和我的女朋友一起看电影。",
-a:"I usually watch movies with my girlfriend.",
-tag:"watch"
-},
-
-{
-q:"看完电影后，我通常去商场。",
-a:"After watching a movie, I usually go to the mall.",
-tag:"After + doing"
-},
-
-{
-q:"我有时候遛我的狗。",
-a:"I sometimes walk my dog.",
-tag:"sometimes"
-},
-
-{
-q:"我通常早餐喝咖啡。",
-a:"I usually drink coffee for breakfast.",
-tag:"usually"
-},
-
-{
-q:"咖啡帮助我清醒。",
-a:"Coffee helps me wake up.",
-tag:"help + verb"
-},
-
-{
-q:"音乐让我开心。",
-a:"Music makes me happy.",
-tag:"make + adjective"
-},
-
-{
-q:"我今天感觉很好。",
-a:"I feel great today.",
-tag:"feel"
-},
-
-{
-q:"我现在不忙。",
-a:"I'm not busy now.",
-tag:"be + adjective"
-},
-
-{
-q:"我昨天睡得很好。",
-a:"I slept well yesterday.",
-tag:"past"
-},
-
-{
-q:"昨天下班后我吃了晚饭。",
-a:"I had dinner after work yesterday.",
-tag:"past"
-}
-
-];
-
-
-const challenges = [
-
-{
-q:"下班后，我通常坐地铁回家。",
-a:"After getting off work, I usually take the subway home."
-},
-
-{
-q:"我想继续学习英语。",
-a:"I want to keep studying English."
-},
-
-{
-q:"我想专注于提高我的英语。",
-a:"I want to focus on improving my English."
-},
-
-{
-q:"我不会放弃学习英语。",
-a:"I won't give up studying English."
-},
-
-{
-q:"我有足够的时间学习英语。",
-a:"I have enough time to study English."
-},
-
-{
-q:"我太累了，不能学习英语。",
-a:"I'm too tired to study English."
-},
-
-{
-q:"我原本打算遛狗。",
-a:"I was going to walk my dog."
-},
-
-{
-q:"我准备做晚饭。",
-a:"I'm getting ready to cook dinner."
-},
-
-{
-q:"当我到家时，我会吃晚饭。",
-a:"When I get home, I'll have dinner."
-},
-
-{
-q:"虽然我很累，我还是想继续学习。",
-a:"Although I'm tired, I still want to keep studying."
-},
-
-{
-q:"我通常在下班后学习英语。",
-a:"I usually study English after work."
-},
-
-{
-q:"我有时候看动作电影。",
-a:"I sometimes watch action movies."
-},
-
-{
-q:"我通常和女朋友一起去商场。",
-a:"I usually go to the mall with my girlfriend."
-},
-
-{
-q:"我今天有一些空闲时间。",
-a:"I have some free time today."
-},
-
-{
-q:"我想休息一会儿。",
-a:"I want to rest for a while."
-}
-
-];
-
 
 const words = [
 
-["work","/wɜːrk/","工作"],
-["office","/ˈɔːfɪs/","办公室"],
-["company","/ˈkʌmpəni/","公司"],
-["coffee","/ˈkɔːfi/","咖啡"],
-["tea","/tiː/","茶"],
-["water","/ˈwɔːtər/","水"],
-["breakfast","/ˈbrekfəst/","早餐"],
-["lunch","/lʌntʃ/","午餐"],
-["dinner","/ˈdɪnər/","晚餐"],
-["subway","/ˈsʌbweɪ/","地铁"],
-["home","/hoʊm/","家"],
-["dog","/dɔːɡ/","狗"],
-["girlfriend","/ˈɡɜːrlfrend/","女朋友"],
-["movie","/ˈmuːvi/","电影"],
-["music","/ˈmjuːzɪk/","音乐"],
-["phone","/foʊn/","手机"],
-["mall","/mɔːl/","商场"],
-["shop","/ʃɑːp/","商店"],
-["restaurant","/ˈrestrɑːnt/","餐厅"],
-["food","/fuːd/","食物"],
-["egg","/eɡ/","鸡蛋"],
-["hamburger","/ˈhæmbɜːrɡər/","汉堡"],
-["noodles","/ˈnuːdlz/","面条"],
-["sushi","/ˈsuːʃi/","寿司"],
-["tired","/ˈtaɪərd/","累的"],
-["sleepy","/ˈsliːpi/","困的"],
-["busy","/ˈbɪzi/","忙的"],
-["free","/friː/","空闲的"],
-["happy","/ˈhæpi/","开心的"],
-["sad","/sæd/","难过的"],
-["hungry","/ˈhʌŋɡri/","饿的"],
-["thirsty","/ˈθɜːrsti/","渴的"],
-["late","/leɪt/","晚的"],
-["early","/ˈɜːrli/","早的"],
-["good","/ɡʊd/","好的"],
-["great","/ɡreɪt/","很棒的"],
-["beautiful","/ˈbjuːtɪfəl/","漂亮的"],
-["delicious","/dɪˈlɪʃəs/","美味的"],
-["easy","/ˈiːzi/","容易的"],
-["difficult","/ˈdɪfɪkəlt/","困难的"],
-["important","/ɪmˈpɔːrtənt/","重要的"],
-["ready","/ˈredi/","准备好的"],
-["rest","/rest/","休息"],
-["study","/ˈstʌdi/","学习"],
-["learn","/lɜːrn/","学习、学会"],
-["practice","/ˈpræktɪs/","练习"],
-["improve","/ɪmˈpruːv/","提高"],
-["remember","/rɪˈmembər/","记住"],
-["forget","/fərˈɡet/","忘记"],
-["understand","/ˌʌndərˈstænd/","理解"],
-["speak","/spiːk/","说"],
-["listen","/ˈlɪsən/","听"],
-["read","/riːd/","读"],
-["write","/raɪt/","写"],
-["watch","/wɑːtʃ/","观看"],
-["look","/lʊk/","看"],
-["see","/siː/","看见"],
-["walk","/wɔːk/","走路、遛"],
-["go","/ɡoʊ/","去"],
-["come","/kʌm/","来"],
-["get","/ɡet/","得到、到达、变得"],
-["take","/teɪk/","拿、乘坐、花费"],
-["have","/hæv/","有、吃、喝"],
-["make","/meɪk/","使、制作"],
-["help","/help/","帮助"],
-["want","/wɑːnt/","想要"],
-["need","/niːd/","需要"],
-["like","/laɪk/","喜欢"],
-["love","/lʌv/","爱、非常喜欢"],
-["feel","/fiːl/","感觉"],
-["sleep","/sliːp/","睡觉"],
-["wake","/weɪk/","醒来"],
-["cook","/kʊk/","做饭"],
-["eat","/iːt/","吃"],
-["drink","/drɪŋk/","喝"],
-["buy","/baɪ/","买"],
-["use","/juːz/","使用"],
-["play","/pleɪ/","玩"],
-["call","/kɔːl/","打电话"],
-["start","/stɑːrt/","开始"],
-["finish","/ˈfɪnɪʃ/","完成"],
-["continue","/kənˈtɪnjuː/","继续"],
-["try","/traɪ/","尝试"],
-["give","/ɡɪv/","给"],
-["keep","/kiːp/","保持、继续"],
-["focus","/ˈfoʊkəs/","专注"],
-["enough","/ɪˈnʌf/","足够的"],
-["probably","/ˈprɑːbəbli/","可能、大概"],
-["usually","/ˈjuːʒuəli/","通常"],
-["sometimes","/ˈsʌmtaɪmz/","有时候"],
-["always","/ˈɔːlweɪz/","总是"],
-["never","/ˈnevər/","从不"],
-["already","/ɔːlˈredi/","已经"],
-["today","/təˈdeɪ/","今天"],
-["yesterday","/ˈjestərdeɪ/","昨天"],
-["tomorrow","/təˈmɑːroʊ/","明天"],
-["morning","/ˈmɔːrnɪŋ/","早上"],
-["afternoon","/ˌæftərˈnuːn/","下午"],
-["evening","/ˈiːvnɪŋ/","晚上"],
-["night","/naɪt/","夜晚"]
+["tired","/taɪərd/","累的","I'm tired after work.","下班后我很累。","life"],
+["sleepy","/ˈsliːpi/","困的","I'm sleepy today.","我今天很困。","emotion"],
+["happy","/ˈhæpi/","开心的","I'm happy today.","我今天很开心。","emotion"],
+["sad","/sæd/","难过的","I feel sad today.","我今天感觉很难过。","emotion"],
+["busy","/ˈbɪzi/","忙的","I'm busy today.","我今天很忙。","work"],
+["free","/friː/","有空的","I'm free now.","我现在有空。","life"],
+["hungry","/ˈhʌŋɡri/","饿的","I'm hungry.","我饿了。","food"],
+["thirsty","/ˈθɜːrsti/","渴的","I'm thirsty.","我渴了。","food"],
+["relaxed","/rɪˈlækst/","放松的","I feel relaxed now.","我现在感觉很放松。","emotion"],
+["excited","/ɪkˈsaɪtɪd/","兴奋的","I'm excited about the trip.","我对这次旅行很兴奋。","travel"],
+
+["coffee","/ˈkɔːfi/","咖啡","I usually drink coffee.","我通常喝咖啡。","food"],
+["water","/ˈwɔːtər/","水","I drink water with dinner.","我晚饭喝水。","food"],
+["breakfast","/ˈbrekfəst/","早餐","I have breakfast at seven.","我七点吃早餐。","food"],
+["lunch","/lʌntʃ/","午餐","I have lunch at work.","我在公司吃午饭。","food"],
+["dinner","/ˈdɪnər/","晚餐","I have dinner at home.","我在家吃晚饭。","food"],
+["egg","/eɡ/","鸡蛋","I usually have eggs for breakfast.","我通常早餐吃鸡蛋。","food"],
+["hamburger","/ˈhæmbɜːrɡər/","汉堡","I want a hamburger.","我想吃一个汉堡。","food"],
+["noodles","/ˈnuːdəlz/","面条","I had noodles for dinner.","我晚饭吃了面条。","food"],
+["sushi","/ˈsuːʃi/","寿司","I like sushi.","我喜欢寿司。","food"],
+["delicious","/dɪˈlɪʃəs/","美味的","The food is delicious.","食物很好吃。","food"],
+
+["work","/wɜːrk/","工作","I have a lot of work.","我有很多工作。","work"],
+["office","/ˈɔːfɪs/","办公室","I'm at the office.","我在办公室。","work"],
+["company","/ˈkʌmpəni/","公司","I work for a company.","我为一家公司工作。","work"],
+["meeting","/ˈmiːtɪŋ/","会议","I have a meeting today.","我今天有一个会议。","work"],
+["email","/ˈiːmeɪl/","电子邮件","I need to check my email.","我需要查看邮件。","work"],
+["busy","/ˈbɪzi/","忙的","Work is busy today.","今天工作很忙。","work"],
+["break","/breɪk/","休息","I need a break.","我需要休息一下。","work"],
+["finish","/ˈfɪnɪʃ/","完成","I need to finish my work.","我需要完成工作。","work"],
+["start","/stɑːrt/","开始","I start work at nine.","我九点开始工作。","work"],
+["late","/leɪt/","晚的","I got home late.","我很晚才到家。","work"],
+
+["subway","/ˈsʌbweɪ/","地铁","I take the subway home.","我坐地铁回家。","commute"],
+["train","/treɪn/","火车","I take the train to work.","我坐火车去上班。","commute"],
+["station","/ˈsteɪʃən/","车站","The station is crowded.","车站很拥挤。","commute"],
+["home","/hoʊm/","家","I just got home.","我刚到家。","home"],
+["traffic","/ˈtræfɪk/","交通","The traffic is bad today.","今天交通很糟。","commute"],
+["walk","/wɔːk/","走路","I walk home sometimes.","我有时走路回家。","commute"],
+["ride","/raɪd/","乘坐","I ride the train every day.","我每天坐火车。","commute"],
+["crowded","/ˈkraʊdɪd/","拥挤的","The subway is crowded.","地铁很拥挤。","commute"],
+["early","/ˈɜːrli/","早的","I got up early.","我起得很早。","life"],
+["tomorrow","/təˈmɑːroʊ/","明天","I'll do it tomorrow.","我明天做。","life"],
+
+["dog","/dɔːɡ/","狗","I have a dog.","我有一只狗。","home"],
+["walk","/wɔːk/","散步","I walk my dog.","我遛狗。","home"],
+["phone","/foʊn/","手机","I'm playing on my phone.","我正在玩手机。","life"],
+["movie","/ˈmuːvi/","电影","I watched a movie yesterday.","我昨天看了电影。","life"],
+["music","/ˈmjuːzɪk/","音乐","Music makes me happy.","音乐让我开心。","life"],
+["coffee","/ˈkɔːfi/","咖啡","Coffee helps me wake up.","咖啡帮助我清醒。","life"],
+["shower","/ˈʃaʊər/","淋浴","I take a shower after dinner.","我晚饭后洗澡。","home"],
+["bed","/bed/","床","I go to bed late.","我很晚睡觉。","home"],
+["sleep","/sliːp/","睡觉","I need to sleep.","我需要睡觉。","home"],
+["rest","/rest/","休息","I want to rest for a while.","我想休息一会儿。","home"],
+
+["travel","/ˈtrævəl/","旅行","I love traveling.","我喜欢旅行。","travel"],
+["trip","/trɪp/","旅行","The trip was great.","这次旅行很棒。","travel"],
+["hotel","/hoʊˈtel/","酒店","We stayed at a hotel.","我们住在酒店。","travel"],
+["airport","/ˈerpɔːrt/","机场","I'm going to the airport.","我要去机场。","travel"],
+["ticket","/ˈtɪkɪt/","票","I bought a ticket.","我买了一张票。","travel"],
+["passport","/ˈpæspɔːrt/","护照","I need my passport.","我需要我的护照。","travel"],
+["beautiful","/ˈbjuːtəfəl/","美丽的","The world is beautiful.","世界很美。","travel"],
+["country","/ˈkʌntri/","国家","I want to visit more countries.","我想去更多国家。","travel"],
+["beach","/biːtʃ/","海滩","I want to go to the beach.","我想去海滩。","travel"],
+["mountain","/ˈmaʊntən/","山","I went hiking in the mountains.","我去山里徒步了。","travel"],
+
+["rain","/reɪn/","雨","It's raining today.","今天在下雨。","life"],
+["sunny","/ˈsʌni/","晴朗的","It's sunny today.","今天是晴天。","life"],
+["cloudy","/ˈklaʊdi/","多云的","It's cloudy today.","今天多云。","life"],
+["cold","/koʊld/","冷的","It's cold today.","今天很冷。","life"],
+["hot","/hɑːt/","热的","It's hot today.","今天很热。","life"],
+["weather","/ˈweðər/","天气","The weather is nice.","天气很好。","life"],
+["umbrella","/ʌmˈbrelə/","雨伞","I need an umbrella.","我需要一把雨伞。","life"],
+["outside","/ˌaʊtˈsaɪd/","外面","It's raining outside.","外面在下雨。","life"],
+
+["shop","/ʃɑːp/","商店","I went to the shop.","我去了商店。","shopping"],
+["mall","/mɔːl/","商场","I went to the mall.","我去了商场。","shopping"],
+["buy","/baɪ/","买","I want to buy this.","我想买这个。","shopping"],
+["price","/praɪs/","价格","What's the price?","价格是多少？","shopping"],
+["cheap","/tʃiːp/","便宜的","It's cheap.","它很便宜。","shopping"],
+["expensive","/ɪkˈspensɪv/","昂贵的","It's too expensive.","太贵了。","shopping"],
+["size","/saɪz/","尺寸","What size do you need?","你需要什么尺码？","shopping"],
+["cash","/kæʃ/","现金","I don't have much cash.","我没有多少现金。","shopping"],
+
+["usually","/ˈjuːʒuəli/","通常","I usually drink coffee.","我通常喝咖啡。","life"],
+["sometimes","/ˈsʌmtaɪmz/","有时","I sometimes watch movies.","我有时看电影。","life"],
+["always","/ˈɔːlweɪz/","总是","I always drink water.","我总是喝水。","life"],
+["rarely","/ˈrerli/","很少","I rarely eat fast food.","我很少吃快餐。","life"],
+["never","/ˈnevər/","从不","I never give up.","我从不放弃。","emotion"],
+["already","/ɔːlˈredi/","已经","I already had dinner.","我已经吃过晚饭了。","life"],
+["finally","/ˈfaɪnəli/","终于","I finally got home.","我终于到家了。","life"],
+["probably","/ˈprɑːbəbli/","可能","I'll probably be tired.","我可能会累。","life"],
+
+["focus","/ˈfoʊkəs/","专注","I need to focus.","我需要专心。","study"],
+["improve","/ɪmˈpruːv/","提高","I want to improve my English.","我想提高英语。","study"],
+["study","/ˈstʌdi/","学习","I study English every day.","我每天学习英语。","study"],
+["learn","/lɜːrn/","学会","I want to learn English.","我想学英语。","study"],
+["practice","/ˈpræktɪs/","练习","I need more practice.","我需要更多练习。","study"],
+["question","/ˈkwestʃən/","问题","I have a question.","我有一个问题。","study"],
+["answer","/ˈænsər/","答案","I know the answer.","我知道答案。","study"],
+["mistake","/mɪˈsteɪk/","错误","Mistakes help me learn.","错误帮助我学习。","study"],
+["remember","/rɪˈmembər/","记住","I can't remember it.","我记不住。","study"],
+["forget","/fərˈɡet/","忘记","I don't want to forget it.","我不想忘记。","study"]
 
 ];
 
+
+/* =========================
+   PHRASES
+========================= */
 
 const phrases = [
 
-["get off work","下班"],
-["get home","到家"],
-["get to work","到公司/到工作地点"],
-["take the subway","坐地铁"],
-["take the subway home","坐地铁回家"],
-["walk my dog","遛我的狗"],
-["have breakfast","吃早餐"],
-["have dinner","吃晚饭"],
-["have some coffee","喝一些咖啡"],
-["have a smoke","抽一支烟"],
-["grab a coffee","买/喝杯咖啡"],
-["rest for a while","休息一会儿"],
-["play on my phone","玩手机"],
-["go to bed","去睡觉"],
-["go shopping","去购物"],
-["go to the mall","去商场"],
-["walk around the mall","逛商场"],
-["watch a movie","看电影"],
-["watch action movies","看动作电影"],
-["focus on","专注于"],
-["give up","放弃"],
-["keep studying","继续学习"],
-["get ready to","准备做"],
-["be going to","打算做"],
-["have the day off","休息一天"],
-["get some rest","休息一下"],
-["for a while","一会儿"],
-["a lot of work","很多工作"],
-["free time","空闲时间"],
-["on my way home","在回家的路上"],
-["run out of time","没有时间了"],
-["wake up","醒来"],
-["get ready","准备好"],
-["get tired","变累"],
-["feel great","感觉很好"],
-["have something delicious","吃点好吃的"],
-["see my girlfriend","见我的女朋友"],
-["spend time with","和……一起度过时间"],
-["go for a walk","去散步"],
-["take a shower","洗澡"]
+["get off work","下班","I just got off work.","我刚下班。","work"],
+["get to work","到公司/上班","I usually get to work at nine.","我通常九点到公司。","work"],
+["go to work","去上班","I go to work every day.","我每天上班。","work"],
+["finish work","结束工作","I usually finish work at ten.","我通常十点结束工作。","work"],
+["take the subway","坐地铁","I take the subway home.","我坐地铁回家。","commute"],
+["take the train","坐火车","I take the train to work.","我坐火车去上班。","commute"],
+["get home","到家","I just got home.","我刚到家。","home"],
+["go home","回家","I'm going home now.","我现在回家。","home"],
+["have dinner","吃晚饭","I have dinner at home.","我在家吃晚饭。","food"],
+["have breakfast","吃早餐","I have breakfast at seven.","我七点吃早餐。","food"],
+["have lunch","吃午饭","I have lunch at work.","我在公司吃午饭。","food"],
+["have some coffee","喝点咖啡","I want to have some coffee.","我想喝点咖啡。","food"],
+["grab a coffee","喝杯咖啡","Let's grab a coffee.","我们去喝杯咖啡吧。","food"],
+["have a smoke","抽根烟","I usually have a smoke after breakfast.","我通常早餐后抽根烟。","life"],
+["rest for a while","休息一会儿","I want to rest for a while.","我想休息一会儿。","life"],
+["play on my phone","玩手机","I play on my phone for a while.","我玩一会儿手机。","life"],
+["go to bed","去睡觉","I go to bed late.","我很晚睡觉。","home"],
+["take a shower","洗澡","I take a shower after dinner.","我晚饭后洗澡。","home"],
+["walk my dog","遛狗","I walk my dog every day.","我每天遛狗。","home"],
+["watch a movie","看电影","I usually watch a movie.","我通常看电影。","life"],
+["go shopping","去购物","I want to go shopping.","我想去购物。","shopping"],
+["go to the mall","去商场","I went to the mall yesterday.","我昨天去了商场。","shopping"],
+["walk around the mall","逛商场","We walked around the mall.","我们逛了商场。","shopping"],
+["hang out","出去玩/闲逛","I hang out with my girlfriend.","我和女朋友出去玩。","social"],
+["spend time with","和……共度时间","I like spending time with my girlfriend.","我喜欢和女朋友一起度过时间。","social"],
+["focus on","专注于","I need to focus on English.","我需要专注英语。","study"],
+["focus on studying","专注学习","I'm going to focus on studying English.","我要专心学习英语。","study"],
+["keep doing","继续做","I want to keep studying.","我想继续学习。","study"],
+["keep improving","继续提高","I want to keep improving my English.","我想继续提高英语。","study"],
+["give up","放弃","I won't give up.","我不会放弃。","emotion"],
+["give up doing","放弃做某事","I won't give up studying English.","我不会放弃学英语。","study"],
+["get ready","准备好","I'm getting ready.","我正在准备。","life"],
+["get ready to","准备做","I'm getting ready to cook.","我准备做饭。","food"],
+["for a while","一会儿","I'll rest for a while.","我会休息一会儿。","life"],
+["all day","一整天","It's been raining all day.","已经下了一整天的雨。","weather"],
+["on my way home","在回家路上","I'm on my way home.","我正在回家的路上。","commute"],
+["on my way to work","在去上班的路上","I'm on my way to work.","我正在去上班的路上。","commute"],
+["a lot of work","很多工作","I have a lot of work today.","我今天有很多工作。","work"],
+["a little tired","有点累","I'm a little tired.","我有点累。","emotion"],
+["a little busy","有点忙","I'm a little busy now.","我现在有点忙。","work"],
+["a cup of coffee","一杯咖啡","I want a cup of coffee.","我想喝一杯咖啡。","food"],
+["a lot of time","很多时间","I have a lot of time today.","我今天有很多时间。","life"],
+["enough time","足够的时间","I have enough time to study.","我有足够时间学习。","study"],
+["not enough time","没有足够时间","I don't have enough time.","我没有足够时间。","study"],
+["too tired to","太累而不能","I'm too tired to study.","我太累了，不能学习。","emotion"],
+["too sleepy to","太困而不能","I'm too sleepy to work.","我太困了，没法工作。","work"],
+["be going to","打算","I'm going to study tonight.","我今晚打算学习。","study"],
+["was going to","本来打算","I was going to walk my dog.","我本来打算遛狗。","home"],
+["run out of time","没时间了","I ran out of time.","我没时间了。","life"],
+["catch the subway","赶上地铁","I caught the subway.","我赶上了地铁。","commute"],
+["miss the subway","错过地铁","I missed the subway.","我错过了地铁。","commute"],
+["have the day off","休息一天","I have the day off.","我今天休息。","work"],
+["get some rest","休息一下","I need to get some rest.","我需要休息一下。","life"],
+["stay home","待在家","I want to stay home today.","我今天想待在家。","home"],
+["have something delicious","吃点好吃的","I want to have something delicious.","我想吃点好吃的。","food"],
+["see my girlfriend","见女朋友","I'm going to see my girlfriend.","我要去见女朋友。","social"],
+["go for a walk","去散步","Let's go for a walk.","我们去散步吧。","life"],
+["look at my phone","看手机","I'm looking at my phone.","我正在看手机。","life"],
+["watch TV","看电视","I watch TV after dinner.","我晚饭后看电视。","home"],
+["see a movie","看一场电影","We saw a movie yesterday.","我们昨天看了一场电影。","life"]
 
 ];
 
+
+/* =========================
+   SENTENCES
+========================= */
 
 const sentences = [
 
-["I'm feeling great.","我感觉很好。"],
-["I'm tired.","我累了。"],
-["I'm sleepy.","我困了。"],
-["I'm hungry.","我饿了。"],
-["I'm not busy now.","我现在不忙。"],
-["I have some free time.","我有一些空闲时间。"],
-["I have a lot of work today.","我今天有很多工作。"],
-["I just got off work.","我刚下班。"],
-["I'm taking the subway home.","我正在坐地铁回家。"],
-["I'm resting now.","我现在正在休息。"],
-["I have the day off.","我今天休息。"],
-["I want to rest for a while.","我想休息一会儿。"],
-["I want to have some coffee.","我想喝点咖啡。"],
-["I usually drink coffee in the morning.","我通常早上喝咖啡。"],
-["I always drink water with dinner.","我晚饭总是喝水。"],
-["I usually study English after work.","我通常下班后学习英语。"],
-["I sometimes watch movies.","我有时候看电影。"],
-["I usually watch action movies.","我通常看动作电影。"],
-["I usually watch movies with my girlfriend.","我通常和女朋友一起看电影。"],
-["After watching a movie, I go to the mall.","看完电影后，我去商场。"],
-["After getting off work, I take the subway home.","下班后，我坐地铁回家。"],
-["After getting home, I have dinner.","到家后，我吃晚饭。"],
-["Before I go to bed, I study English.","睡觉前，我学习英语。"],
-["When I get home, I'll have dinner.","当我到家时，我会吃晚饭。"],
-["If I have time, I'll study English.","如果我有时间，我会学习英语。"],
-["Although I'm tired, I still want to study English.","虽然我很累，但我还是想学习英语。"],
-["I want to keep studying English.","我想继续学习英语。"],
-["I want to focus on improving my English.","我想专注于提高我的英语。"],
-["I won't give up studying English.","我不会放弃学习英语。"],
-["I have enough time to study English.","我有足够的时间学习英语。"],
-["I'm too tired to study English.","我太累了，不能学习英语。"],
-["I was going to walk my dog.","我原本打算遛狗。"],
-["I'm getting ready to cook dinner.","我正在准备做晚饭。"],
-["Coffee helps me wake up.","咖啡帮助我清醒。"],
-["Music makes me happy.","音乐让我开心。"],
-["Traveling makes me happy.","旅行让我开心。"],
-["The world is really beautiful.","这个世界真的很美。"],
-["I want to see more of the world.","我想看看更大的世界。"],
-["I won't give up.","我不会放弃。"]
+["I'm feeling great today.","我今天感觉很好。","emotion"],
+["I have a lot of work today.","我今天有很多工作。","work"],
+["It's not bad.","还不错。","life"],
+["I'm not busy now.","我现在不忙。","work"],
+["I have some free time.","我有一点空闲时间。","life"],
+["I want to rest for a while.","我想休息一会儿。","life"],
+["I'll play on my phone after that.","之后我会玩手机。","life"],
+["I'm going to focus on studying English.","我要专心学习英语。","study"],
+["I'm going to study English for about an hour.","我要学习英语大约一小时。","study"],
+["I will sleep for about twenty minutes.","我会睡大约二十分钟。","home"],
+["After that, I want to have a smoke.","之后我想抽根烟。","life"],
+["I'm going to get ready to cook dinner.","我要准备做晚饭。","food"],
+["I'm going to cook a hamburger.","我要做汉堡。","food"],
+["I always drink water with my dinner.","我晚饭总是喝水。","food"],
+["I almost always drink coffee.","我几乎总是喝咖啡。","food"],
+["I usually drink a cup of coffee every day.","我通常每天喝一杯咖啡。","food"],
+["I usually drink coffee with my breakfast.","我通常早餐喝咖啡。","food"],
+["I usually have some coffee and eggs.","我通常喝咖啡并吃鸡蛋。","food"],
+["I usually have breakfast before I go to work.","我通常上班前吃早餐。","work"],
+["I usually have breakfast at about seven a.m.","我通常早上七点左右吃早餐。","food"],
+["I always have a smoke after breakfast.","我早餐后总是抽根烟。","life"],
+["I sometimes walk my dog after that.","之后我有时会遛狗。","home"],
+["I usually play on my phone after that.","之后我通常玩手机。","life"],
+["I usually rest for about twenty minutes.","我通常休息大约二十分钟。","life"],
+["I usually focus on studying English.","我通常专心学习英语。","study"],
+["I sometimes watch movies after that.","之后我有时看电影。","life"],
+["I usually watch action movies.","我通常看动作电影。","life"],
+["I usually watch action movies with my girlfriend.","我通常和女朋友一起看动作电影。","social"],
+["After watching a movie, I usually go to the mall.","看完电影后，我通常去商场。","shopping"],
+["After getting off work, I usually take the subway home.","下班后，我通常坐地铁回家。","commute"],
+["After getting home, I have dinner.","到家后，我吃晚饭。","home"],
+["After eating dinner, I take a shower.","吃完晚饭后，我洗澡。","home"],
+["After taking a shower, I study English.","洗完澡后，我学习英语。","study"],
+["Before I go to work, I have breakfast.","上班前，我吃早餐。","work"],
+["When I finish work, I'll take the subway home.","当我下班后，我会坐地铁回家。","commute"],
+["When I get home, I'll have dinner.","到家后，我会吃晚饭。","home"],
+["When I'm tired, I'll rest for a while.","累的时候，我会休息一会儿。","emotion"],
+["If I have the day off, I'll go out.","如果我休息，我会出去。","life"],
+["If I miss the subway, I'll be late.","如果我错过地铁，我会迟到。","commute"],
+["Although I'm tired, I still want to study English.","虽然我很累，但我还是想学习英语。","study"],
+["Although it's raining, I still want to go out.","虽然下雨，我还是想出去。","weather"],
+["I was going to walk my dog, but it was raining.","我本来打算遛狗，但是下雨了。","weather"],
+["It's been raining all day.","已经下了一整天的雨。","weather"],
+["I want to keep improving my English.","我想继续提高英语。","study"],
+["I want to keep studying every day.","我想每天继续学习。","study"],
+["I won't give up.","我不会放弃。","emotion"],
+["I won't give up studying English.","我不会放弃学习英语。","study"],
+["I don't have enough time to study.","我没有足够时间学习。","study"],
+["I have enough time to study tonight.","我今晚有足够时间学习。","study"],
+["I'm too tired to study tonight.","我今晚太累了，不能学习。","emotion"],
+["I'm too sleepy to work.","我太困了，没法工作。","work"],
+["I probably won't be too tired tonight.","我今晚可能不会太累。","emotion"],
+["I'll probably be tired after work.","我下班后可能会累。","work"],
+["I just got off work.","我刚下班。","work"],
+["I'm taking the subway home.","我正在坐地铁回家。","commute"],
+["I'm resting now.","我现在正在休息。","life"],
+["I have the day off today.","我今天休息。","work"],
+["I went hiking in the mountains yesterday.","我昨天去山里徒步了。","travel"],
+["It was tiring but fun.","很累但是很好玩。","emotion"],
+["Traveling makes me happy.","旅行让我开心。","travel"],
+["The world is really beautiful.","世界真的很美。","travel"],
+["Music helps me relax.","音乐帮助我放松。","life"],
+["Coffee helps me wake up.","咖啡帮助我清醒。","food"],
+["I want to see more of the world.","我想看看更多的世界。","travel"],
+["I want to visit Japan and Europe.","我想去日本和欧洲。","travel"],
+["I only travel about once a year.","我一年大约只旅行一次。","travel"],
+["I want to improve myself.","我想提升自己。","study"],
+["I can't remember everything.","我不能记住所有东西。","study"],
+["I need more practice.","我需要更多练习。","study"],
+["Small steps every day.","每天进步一点点。","study"]
 
-];
-
-
-const reviews = [
-
-["After + doing","After getting home, I have dinner."],
-["keep + doing","I want to keep studying English."],
-["focus on + doing","I focus on studying English."],
-["give up + doing","I won't give up studying English."],
-["enough + noun + to do","I have enough time to study."],
-["too + adjective + to do","I'm too tired to study."],
-["was/were going to + verb","I was going to walk my dog."],
-["get ready to + verb","I'm getting ready to cook dinner."],
-["Do you...?","Do you study English every day?"],
-["Are you...?","Are you studying English now?"],
-["Did you...?","Did you study English yesterday?"],
-["because / so / but","I'm tired, but I still want to study."],
-["although","Although I'm tired, I still want to study."],
-["when / after / before / if","When I get home, I'll have dinner."],
-["watch / see / look","I watch movies. I look at my phone. I see my girlfriend."],
-["every day / everyday","I study English every day."],
-["then / than","I'll study first, then I'll rest."],
-["finish + doing","I finish studying English before bed."]
 ];
 
 
 /* =========================
-   数据保存
+   CORE PATTERNS
 ========================= */
 
-let state = loadState();
+const patterns = [
+
+["After + doing","After watching a movie, I go to the mall.","做完某事之后……"],
+["keep + doing","I want to keep studying English.","继续做某事"],
+["focus on + doing","I focus on studying English.","专注于做某事"],
+["give up + doing","I won't give up studying English.","放弃做某事"],
+["enough + noun + to do","I have enough time to study.","有足够的……去做……"],
+["too + adjective + to do","I'm too tired to study.","太……而不能……"],
+["was/were going to + verb","I was going to walk my dog.","本来打算……"],
+["get ready to + verb","I'm getting ready to cook.","准备做……"],
+["when + present","When I get home, I'll have dinner.","当……的时候"],
+["before + present","Before I go to work, I have breakfast.","在……之前"],
+["after + present","After I get home, I have dinner.","在……之后"],
+["if + present","If I have time, I'll study.","如果……"],
+["although + clause","Although I'm tired, I still study.","虽然……但是……"],
+["because + reason","I study because I want to improve.","因为……"],
+["so + result","I'm tired, so I'll rest.","所以……"],
+["but + contrast","I'm tired, but I still study.","但是……"],
+["Do you + verb?","Do you study English every day?","习惯/一般情况"],
+["Are you + adjective/doing?","Are you studying now?","现在状态/正在做"],
+["Did you + verb?","Did you study yesterday?","过去"],
+["will + verb","I'll study tonight.","将来"],
+["be going to + verb","I'm going to study tonight.","计划"],
+["make + person + adjective","Music makes me happy.","使某人……"],
+["help + person + verb","Coffee helps me wake up.","帮助某人做……"],
+["look at + noun","Look at my phone.","看……"],
+["watch + activity","I watch movies.","观看持续活动"],
+["see + person/movie","I see my girlfriend.","看到/见到"]
+
+];
 
 
-function loadState(){
+/* =========================
+   STATE
+========================= */
 
-  try{
+let state = JSON.parse(localStorage.getItem("leonEnglish3")) || {
+  xp:0,
+  correct:0,
+  mistakes:[],
+  learnedWords:0,
+  learnedPhrases:0,
+  learnedSentences:0,
+  streak:0,
+  lastStudy:"",
+  challengeDone:"",
+  dark:false
+};
 
-    const saved = localStorage.getItem("leonEnglishState");
+let currentCategory="all";
+let libraryType="word";
+let libraryData=[];
+let libraryIndex=0;
+let currentQuestion=null;
+let questionIndex=0;
+let currentChallenge=null;
 
-    if(saved){
 
-      return JSON.parse(saved);
+/* =========================
+   SAVE
+========================= */
 
-    }
+function save(){
+  localStorage.setItem("leonEnglish3",JSON.stringify(state));
+  updateUI();
+}
 
-  }catch(e){}
 
-  return {
-    xp:0,
-    streak:0,
-    lastStudy:"",
-    mistakes:[],
-    history:[]
+/* =========================
+   PAGE
+========================= */
+
+function showPage(id){
+
+  document.querySelectorAll(".page").forEach(p=>{
+    p.classList.remove("active");
+  });
+
+  const page=document.getElementById(id);
+
+  if(page){
+    page.classList.add("active");
+  }
+
+  document.querySelectorAll(".nav-btn").forEach(b=>{
+    b.classList.remove("active");
+  });
+
+  const map={
+    home:0,
+    library:1,
+    practice:2,
+    challenge:3,
+    review:4
   };
 
-}
+  if(map[id]!==undefined){
+    document.querySelectorAll(".nav-btn")[map[id]].classList.add("active");
+  }
 
+  window.scrollTo({
+    top:0,
+    behavior:"smooth"
+  });
 
-function saveState(){
-
-  try{
-
-    localStorage.setItem(
-      "leonEnglishState",
-      JSON.stringify(state)
-    );
-
-  }catch(e){}
-
+  if(id==="library") loadLibrary();
+  if(id==="practice") newQuestion();
+  if(id==="challenge") loadChallenge();
+  if(id==="review") loadPatterns();
+  if(id==="mistakes") loadMistakes();
 }
 
 
 /* =========================
-   日期
+   DARK MODE
 ========================= */
 
-function getToday(){
+function toggleDark(){
 
-  const d = new Date();
+  document.body.classList.toggle("dark");
 
-  return d.getFullYear()
-    + "-"
-    + String(d.getMonth()+1).padStart(2,"0")
-    + "-"
-    + String(d.getDate()).padStart(2,"0");
+  state.dark=document.body.classList.contains("dark");
 
+  save();
 }
 
-
-function markStudy(){
-
-  const today = getToday();
-
-  if(state.lastStudy === today){
-
-    return;
-
-  }
-
-  if(!state.lastStudy){
-
-    state.streak = 1;
-
-  }else{
-
-    const oldDate = new Date(state.lastStudy);
-    const newDate = new Date(today);
-
-    const difference =
-      Math.round((newDate-oldDate)/86400000);
-
-    if(difference === 1){
-
-      state.streak += 1;
-
-    }else{
-
-      state.streak = 1;
-
-    }
-
-  }
-
-  state.lastStudy = today;
-
-  saveState();
-
+if(state.dark){
+  document.body.classList.add("dark");
 }
 
 
 /* =========================
-   XP
+   XP / LEVEL
 ========================= */
 
 function addXP(amount){
 
-  markStudy();
+  state.xp+=amount;
 
-  state.xp += amount;
+  updateStreak();
 
-  saveState();
+  save();
 
-  updateStats();
-
+  toast("+"+amount+" XP");
 }
 
+function getLevel(){
 
-function updateStats(){
+  return Math.floor(state.xp/100)+1;
+}
 
-  const level =
-    Math.floor(state.xp/100)+1;
+function updateStreak(){
 
-  const currentXP =
-    state.xp % 100;
+  const today=new Date().toISOString().slice(0,10);
 
-  document.getElementById("xp").textContent =
-    state.xp;
+  if(state.lastStudy!==today){
 
-  document.getElementById("level").textContent =
-    level;
+    if(state.lastStudy){
 
-  document.getElementById("streak").textContent =
-    state.streak;
+      const last=new Date(state.lastStudy);
+      const now=new Date(today);
 
-  document.getElementById("mistakeCount").textContent =
-    state.mistakes.length;
+      const diff=Math.round(
+        (now-last)/(1000*60*60*24)
+      );
 
-  document.getElementById("levelProgressText").textContent =
-    currentXP + " / 100 XP";
+      if(diff===1){
+        state.streak++;
+      }else if(diff>1){
+        state.streak=1;
+      }
 
-  document.getElementById("progressBar").style.width =
-    currentXP + "%";
+    }else{
+      state.streak=1;
+    }
 
-  document.getElementById("levelHint").textContent =
-    "距离下一级还需要 "
-    + (100-currentXP)
-    + " XP";
-
+    state.lastStudy=today;
+  }
 }
 
 
 /* =========================
-   语音
+   UI
 ========================= */
+
+function updateUI(){
+
+  const level=getLevel();
+
+  document.getElementById("level").textContent=level;
+  document.getElementById("xp").textContent=state.xp;
+  document.getElementById("practiceXP").textContent=state.xp;
+  document.getElementById("streak").textContent=state.streak;
+  document.getElementById("correctCount").textContent=state.correct;
+  document.getElementById("mistakeCount").textContent=state.mistakes.length;
+
+  const levelXP=state.xp%100;
+
+  document.getElementById("levelBar").style.width=levelXP+"%";
+
+  const wp=Math.min(
+    100,
+    state.learnedWords/5
+  );
+
+  const pp=Math.min(
+    100,
+    state.learnedPhrases/3
+  );
+
+  const sp=Math.min(
+    100,
+    state.learnedSentences/3
+  );
+
+  document.getElementById("wordProgress").textContent=state.learnedWords;
+  document.getElementById("phraseProgress").textContent=state.learnedPhrases;
+  document.getElementById("sentenceProgress").textContent=state.learnedSentences;
+
+  document.getElementById("wordBar").style.width=wp+"%";
+  document.getElementById("phraseBar").style.width=pp+"%";
+  document.getElementById("sentenceBar").style.width=sp+"%";
+
+  const today=new Date().toISOString().slice(0,10);
+
+  document.getElementById("challengeBar").style.width=
+    state.challengeDone===today ? "100%" : "0%";
+
+  const hour=new Date().getHours();
+
+  document.getElementById("greeting").textContent=
+    hour<12
+    ? "Good morning, Leon."
+    : hour<18
+    ? "Good afternoon, Leon."
+    : "Good evening, Leon.";
+}
+
+
+/* =========================
+   LIBRARY
+========================= */
+
+function setCategory(category,btn){
+
+  currentCategory=category;
+
+  document.querySelectorAll(".chip").forEach(x=>{
+    x.classList.remove("active");
+  });
+
+  btn.classList.add("active");
+
+  loadLibrary();
+}
+
+function loadLibrary(){
+
+  libraryType="word";
+
+  libraryData=words.filter(w=>{
+    return currentCategory==="all" || w[5]===currentCategory;
+  });
+
+  if(libraryData.length===0){
+    libraryData=words;
+  }
+
+  libraryIndex=0;
+
+  renderLibrary();
+
+  renderList();
+}
+
+function renderLibrary(){
+
+  if(!libraryData.length)return;
+
+  const item=libraryData[libraryIndex];
+
+  document.getElementById("libraryType").textContent="WORD";
+
+  document.getElementById("libraryWord").textContent=item[0];
+
+  document.getElementById("libraryIPA").textContent=item[1];
+
+  document.getElementById("libraryMeaning").textContent=item[2];
+
+  document.getElementById("libraryExample").textContent=item[3];
+
+  document.getElementById("libraryExampleCN").textContent=item[4];
+
+  document.getElementById("libraryCounter").textContent=
+    (libraryIndex+1)+" / "+libraryData.length;
+}
+
+function renderList(){
+
+  const box=document.getElementById("libraryList");
+
+  box.innerHTML="";
+
+  document.getElementById("libraryCount").textContent=
+    libraryData.length+" words";
+
+  libraryData.slice(0,80).forEach((item,i)=>{
+
+    const div=document.createElement("div");
+
+    div.className="list-item";
+
+    div.innerHTML=`
+      <div>
+        <strong>${item[0]}</strong>
+        <small>${item[1]} · ${item[2]}</small>
+      </div>
+      <button class="play"
+        onclick="event.stopPropagation();speak('${escapeSpeak(item[0])}')">
+        🔊
+      </button>
+    `;
+
+    div.onclick=()=>{
+      libraryIndex=i;
+      renderLibrary();
+      window.scrollTo({top:0,behavior:"smooth"});
+    };
+
+    box.appendChild(div);
+  });
+}
+
+function previousItem(){
+
+  if(!libraryData.length)return;
+
+  libraryIndex--;
+
+  if(libraryIndex<0){
+    libraryIndex=libraryData.length-1;
+  }
+
+  renderLibrary();
+}
+
+function nextItem(){
+
+  if(!libraryData.length)return;
+
+  libraryIndex++;
+
+  if(libraryIndex>=libraryData.length){
+    libraryIndex=0;
+  }
+
+  renderLibrary();
+
+  if(libraryType==="word"){
+    state.learnedWords++;
+    addXP(2);
+  }
+}
+
+function randomItem(){
+
+  if(!libraryData.length)return;
+
+  libraryIndex=
+    Math.floor(Math.random()*libraryData.length);
+
+  renderLibrary();
+}
+
+function searchLibrary(){
+
+  const q=
+    document.getElementById("search").value
+    .toLowerCase()
+    .trim();
+
+  const box=document.getElementById("libraryList");
+
+  box.innerHTML="";
+
+  const result=words.filter(w=>{
+    return (
+      w[0].toLowerCase().includes(q) ||
+      w[2].includes(q) ||
+      w[3].toLowerCase().includes(q)
+    );
+  });
+
+  document.getElementById("libraryCount").textContent=
+    result.length+" results";
+
+  result.slice(0,100).forEach(item=>{
+
+    const div=document.createElement("div");
+
+    div.className="list-item";
+
+    div.innerHTML=`
+      <div>
+        <strong>${item[0]}</strong>
+        <small>${item[1]} · ${item[2]}</small>
+      </div>
+      <button class="play"
+        onclick="event.stopPropagation();speak('${escapeSpeak(item[0])}')">
+        🔊
+      </button>
+    `;
+
+    box.appendChild(div);
+  });
+}
+
+function openPhrases(){
+
+  libraryData=phrases;
+
+  libraryIndex=0;
+
+  libraryType="phrase";
+
+  document.getElementById("libraryType").textContent="PHRASE";
+
+  const item=phrases[0];
+
+  document.getElementById("libraryWord").textContent=item[0];
+  document.getElementById("libraryIPA").textContent="";
+  document.getElementById("libraryMeaning").textContent=item[1];
+  document.getElementById("libraryExample").textContent=item[2];
+  document.getElementById("libraryExampleCN").textContent=item[3];
+  document.getElementById("libraryCounter").textContent="1 / "+phrases.length;
+
+  renderPhraseList();
+
+  showPage("library");
+}
+
+function renderPhraseList(){
+
+  const box=document.getElementById("libraryList");
+
+  box.innerHTML="";
+
+  document.getElementById("libraryCount").textContent=
+    phrases.length+" phrases";
+
+  phrases.forEach((item,i)=>{
+
+    const div=document.createElement("div");
+
+    div.className="list-item";
+
+    div.innerHTML=`
+      <div>
+        <strong>${item[0]}</strong>
+        <small>${item[1]}</small>
+      </div>
+      <button class="play"
+        onclick="event.stopPropagation();speak('${escapeSpeak(item[0])}')">
+        🔊
+      </button>
+    `;
+
+    div.onclick=()=>{
+
+      libraryIndex=i;
+
+      const p=phrases[i];
+
+      document.getElementById("libraryType").textContent="PHRASE";
+      document.getElementById("libraryWord").textContent=p[0];
+      document.getElementById("libraryIPA").textContent="";
+      document.getElementById("libraryMeaning").textContent=p[1];
+      document.getElementById("libraryExample").textContent=p[2];
+      document.getElementById("libraryExampleCN").textContent=p[3];
+      document.getElementById("libraryCounter").textContent=
+        (i+1)+" / "+phrases.length;
+
+    };
+
+    box.appendChild(div);
+  });
+}
+
+
+/* =========================
+   AUDIO
+========================= */
+
+function escapeSpeak(text){
+
+  return text
+    .replace(/\\/g,"\\\\")
+    .replace(/'/g,"\\'");
+}
 
 function speak(text){
 
   if(!("speechSynthesis" in window)){
-
-    alert("你的浏览器暂时不支持英文语音播放。");
-
+    toast("Your browser does not support audio.");
     return;
-
   }
 
-  window.speechSynthesis.cancel();
+  speechSynthesis.cancel();
 
-  const utterance =
-    new SpeechSynthesisUtterance(text);
+  const u=new SpeechSynthesisUtterance(text);
 
-  utterance.lang = "en-US";
-  utterance.rate = 0.85;
-  utterance.pitch = 1;
+  u.lang="en-US";
+  u.rate=.82;
+  u.pitch=1;
 
-  window.speechSynthesis.speak(utterance);
+  speechSynthesis.speak(u);
+}
 
+function speakCurrent(){
+
+  if(libraryType==="word"){
+
+    const item=libraryData[libraryIndex];
+
+    if(item){
+      speak(item[3]);
+    }
+
+  }else{
+
+    const item=phrases[libraryIndex];
+
+    if(item){
+      speak(item[2]);
+    }
+  }
 }
 
 
 /* =========================
-   历史记录
+   PRACTICE ENGINE
 ========================= */
 
-function addHistory(text){
+const practiceBank=[
 
-  state.history.unshift({
+{
+ q:"“我刚下班。”",
+ options:["I just got off work.","I just get off work.","I just got work.","I just off work."],
+ a:"I just got off work."
+},
 
-    date:getToday(),
+{
+ q:"“我正在坐地铁回家。”",
+ options:["I take the subway home.","I'm taking the subway home.","I took the subway home.","I'm take subway home."],
+ a:"I'm taking the subway home."
+},
 
-    text:text
+{
+ q:"Which sentence is correct?",
+ options:[
+ "After watch a movie, I go home.",
+ "After watching a movie, I go home.",
+ "After watched a movie, I go home.",
+ "After watching movie, I go home."
+ ],
+ a:"After watching a movie, I go home."
+},
 
-  });
+{
+ q:"“我想继续学习英语。”",
+ options:[
+ "I want keep study English.",
+ "I want to keep studying English.",
+ "I want to keep study English.",
+ "I keep to study English."
+ ],
+ a:"I want to keep studying English."
+},
 
-  state.history =
-    state.history.slice(0,50);
+{
+ q:"“我不会放弃。”",
+ options:[
+ "I don't give up.",
+ "I won't give up.",
+ "I won't gave up.",
+ "I don't gave up."
+ ],
+ a:"I won't give up."
+},
 
-  saveState();
+{
+ q:"Which is correct?",
+ options:[
+ "I focus on study English.",
+ "I focus on studying English.",
+ "I focus studying English.",
+ "I focus to studying English."
+ ],
+ a:"I focus on studying English."
+},
 
-  renderHistory();
+{
+ q:"“我没有足够的时间学习。”",
+ options:[
+ "I don't have enough time to study.",
+ "I don't have enough time study.",
+ "I don't have too time to study.",
+ "I have enough time not study."
+ ],
+ a:"I don't have enough time to study."
+},
 
+{
+ q:"“我太累了，不能学习。”",
+ options:[
+ "I'm enough tired to study.",
+ "I'm too tired to study.",
+ "I'm too tired studying.",
+ "I'm very tired to study."
+ ],
+ a:"I'm too tired to study."
+},
+
+{
+ q:"Which is a habit?",
+ options:[
+ "Are you studying English now?",
+ "Did you study English yesterday?",
+ "Do you study English every day?",
+ "Will you study English tonight?"
+ ],
+ a:"Do you study English every day?"
+},
+
+{
+ q:"Which is happening now?",
+ options:[
+ "I study English every day.",
+ "I studied English yesterday.",
+ "I'm studying English now.",
+ "I'll study English tonight."
+ ],
+ a:"I'm studying English now."
+},
+
+{
+ q:"Which is past?",
+ options:[
+ "I study English every day.",
+ "I'm studying English now.",
+ "I studied English yesterday.",
+ "I'll study English tonight."
+ ],
+ a:"I studied English yesterday."
+},
+
+{
+ q:"“我通常早餐喝咖啡。”",
+ options:[
+ "I usually drink coffee with my breakfast.",
+ "I usually drink coffee in my breakfast.",
+ "I usually drinking coffee breakfast.",
+ "I usually drink coffee at breakfasting."
+ ],
+ a:"I usually drink coffee with my breakfast."
+},
+
+{
+ q:"“到家后，我吃晚饭。”",
+ options:[
+ "After get home, I have dinner.",
+ "After getting home, I have dinner.",
+ "After got home, I have dinner.",
+ "After to get home, I have dinner."
+ ],
+ a:"After getting home, I have dinner."
+},
+
+{
+ q:"“虽然我很累，但我还是学习英语。”",
+ options:[
+ "Although I'm tired, I still study English.",
+ "Although I'm tired, but I still study English.",
+ "Although tired, but study English.",
+ "Although I tired, I study."
+ ],
+ a:"Although I'm tired, I still study English."
+},
+
+{
+ q:"“我本来打算遛狗。”",
+ options:[
+ "I was going walk my dog.",
+ "I was going to walk my dog.",
+ "I am going to walked my dog.",
+ "I was went to walk my dog."
+ ],
+ a:"I was going to walk my dog."
+},
+
+{
+ q:"“我准备做晚饭。”",
+ options:[
+ "I'm get ready to cook dinner.",
+ "I'm getting ready to cook dinner.",
+ "I'm getting ready cooking dinner.",
+ "I'm ready to cooking dinner."
+ ],
+ a:"I'm getting ready to cook dinner."
+},
+
+{
+ q:"Which is correct?",
+ options:[
+ "I want to give up studying English.",
+ "I want to give up study English.",
+ "I want give up to study English.",
+ "I give up to studying English."
+ ],
+ a:"I want to give up studying English."
+},
+
+{
+ q:"“咖啡帮助我清醒。”",
+ options:[
+ "Coffee helps me wake up.",
+ "Coffee helps me waking up.",
+ "Coffee makes me to wake up.",
+ "Coffee help me wakes up."
+ ],
+ a:"Coffee helps me wake up."
+},
+
+{
+ q:"“音乐让我开心。”",
+ options:[
+ "Music helps me happy.",
+ "Music makes me happy.",
+ "Music make me happily.",
+ "Music makes me to happy."
+ ],
+ a:"Music makes me happy."
 }
 
+];
 
-/* =========================
-   标准化答案
-========================= */
 
-function normalize(text){
+/* create more questions automatically */
 
-  return text
-    .toLowerCase()
-    .replace(/[.,!?;:'"]/g,"")
-    .replace(/\s+/g," ")
-    .trim();
+function generatePractice(){
 
-}
+  const generated=[];
 
-
-/* =========================
-   练习中心
-========================= */
-
-function renderPractice(){
-
-  const box =
-    document.getElementById("practiceBox");
-
-  box.innerHTML = "";
-
-  practiceQuestions.forEach(function(item,index){
-
-    const card =
-      document.createElement("div");
-
-    card.className = "card";
-
-    card.style.boxShadow = "none";
-    card.style.border = "1px solid #e5e7eb";
-
-    const tag =
-      document.createElement("span");
-
-    tag.className = "tag";
-    tag.textContent = item.tag;
-
-    card.appendChild(tag);
-
-    const title =
-      document.createElement("h3");
-
-    title.textContent =
-      (index+1) + ". " + item.q;
-
-    card.appendChild(title);
-
-    const answerBox =
-      document.createElement("div");
-
-    const button =
-      document.createElement("button");
-
-    button.className = "green";
-
-    button.textContent =
-      "查看参考答案";
-
-    button.addEventListener(
-      "click",
-      function(){
-
-        answerBox.textContent =
-          item.a;
-
-        speak(item.a);
-
-      }
-    );
-
-    card.appendChild(button);
-
-    const input =
-      document.createElement("input");
-
-    input.placeholder =
-      "先自己写英文，再查看答案";
-
-    input.style.marginTop = "10px";
-
-    card.appendChild(input);
-
-    const check =
-      document.createElement("button");
-
-    check.className = "primary";
-
-    check.textContent =
-      "检查答案";
-
-    check.style.marginTop = "10px";
-
-    card.appendChild(check);
-
-    card.appendChild(answerBox);
-
-    const feedback =
-      document.createElement("div");
-
-    feedback.className =
-      "feedback";
-
-    card.appendChild(feedback);
-
-    check.addEventListener(
-      "click",
-      function(){
-
-        const userAnswer =
-          normalize(input.value);
-
-        if(!userAnswer){
-
-          feedback.textContent =
-            "请先写一个答案。";
-
-          feedback.className =
-            "feedback wrong";
-
-          return;
-
-        }
-
-        if(userAnswer === normalize(item.a)){
-
-          feedback.textContent =
-            "✅ 正确！+10 XP";
-
-          feedback.className =
-            "feedback correct";
-
-          addXP(10);
-
-          state.mistakes =
-            state.mistakes.filter(
-              function(q){
-                return q !== item.q;
-              }
-            );
-
-          saveState();
-
-          addHistory(
-            "练习答对：" + item.tag
-          );
-
-          renderMistakes();
-
-        }else{
-
-          feedback.innerHTML =
-            "❌ 还不完全正确。参考答案：<br><strong>"
-            + item.a
-            + "</strong>";
-
-          feedback.className =
-            "feedback wrong";
-
-          if(!state.mistakes.includes(item.q)){
-
-            state.mistakes.push(item.q);
-
-          }
-
-          saveState();
-
-          updateStats();
-
-          addHistory(
-            "练习错题：" + item.tag
-          );
-
-          renderMistakes();
-
-        }
-
-      }
-    );
-
-    box.appendChild(card);
-
-  });
-
-}
-
-
-/* =========================
-   每日挑战
-========================= */
-
-function getDailyChallenge(){
-
-  const day =
-    Math.floor(
-      new Date().getTime()/86400000
-    );
-
-  return challenges[
-    day % challenges.length
+  const subjects=[
+    "I usually drink coffee.",
+    "I usually study English.",
+    "I usually walk my dog.",
+    "I usually watch movies.",
+    "I usually take the subway.",
+    "I usually have breakfast.",
+    "I usually rest after work."
   ];
 
+  subjects.forEach(s=>{
+
+    generated.push({
+      q:"Choose the correct sentence:",
+      options:[
+        s,
+        s.replace("usually","usually to"),
+        s.replace("usually","usually am"),
+        s.replace("usually","usually doing")
+      ],
+      a:s
+    });
+
+  });
+
+  return practiceBank.concat(generated);
 }
 
+const allQuestions=generatePractice();
 
-function setupChallenge(){
 
-  const item =
-    getDailyChallenge();
+function newQuestion(){
 
-  document.getElementById(
-    "challengeQuestion"
-  ).textContent = item.q;
+  currentQuestion=
+    allQuestions[
+      Math.floor(Math.random()*allQuestions.length)
+    ];
 
-  document.getElementById(
-    "challengeInput"
-  ).value = "";
+  questionIndex++;
 
-  document.getElementById(
-    "challengeResult"
-  ).textContent = "";
+  document.getElementById("question").textContent=
+    currentQuestion.q;
 
-  document.getElementById(
-    "challengeAnswer"
-  ).classList.add("hidden");
+  const box=document.getElementById("options");
 
-  document.getElementById(
-    "challengeAnswer"
-  ).textContent =
-    "参考答案：" + item.a;
+  box.innerHTML="";
 
+  document.getElementById("feedback").textContent="";
+
+  currentQuestion.options.forEach(option=>{
+
+    const b=document.createElement("button");
+
+    b.className="option";
+
+    b.textContent=option;
+
+    b.onclick=()=>answerQuestion(option,b);
+
+    box.appendChild(b);
+  });
+
+  document.getElementById("questionNumber").textContent=
+    questionIndex;
 }
 
+function answerQuestion(answer,button){
 
-document.getElementById(
-  "challengeCheck"
-).addEventListener(
-  "click",
-  function(){
+  const buttons=
+    document.querySelectorAll(".option");
 
-    const item =
-      getDailyChallenge();
+  buttons.forEach(b=>b.disabled=true);
 
-    const input =
-      normalize(
-        document.getElementById(
-          "challengeInput"
-        ).value
-      );
+  if(answer===currentQuestion.a){
 
-    const result =
-      document.getElementById(
-        "challengeResult"
-      );
+    button.classList.add("correct");
 
-    if(!input){
+    document.getElementById("feedback").textContent=
+      "✓ Correct! Great job.";
 
-      result.textContent =
-        "请先输入英文答案。";
+    state.correct++;
 
-      result.className =
-        "feedback wrong";
+    addXP(10);
 
-      return;
+  }else{
 
-    }
+    button.classList.add("wrong");
 
-    if(input === normalize(item.a)){
+    document.getElementById("feedback").textContent=
+      "✗ Not quite. Correct answer: "+currentQuestion.a;
 
-      result.textContent =
-        "🎉 完全正确！+20 XP";
+    state.mistakes.unshift({
+      question:currentQuestion.q,
+      answer:currentQuestion.a
+    });
 
-      result.className =
-        "feedback correct";
+    state.mistakes=
+      state.mistakes.slice(0,100);
 
-      addXP(20);
+    save();
 
-      state.mistakes =
-        state.mistakes.filter(
-          function(q){
-            return q !== item.q;
-          }
-        );
-
-      saveState();
-
-      addHistory(
-        "每日挑战答对"
-      );
-
-      renderMistakes();
-
-    }else{
-
-      result.textContent =
-        "❌ 还差一点。再试一次，或者查看参考答案。";
-
-      result.className =
-        "feedback wrong";
-
-      if(!state.mistakes.includes(item.q)){
-
-        state.mistakes.push(item.q);
-
-      }
-
-      saveState();
-
-      updateStats();
-
-      renderMistakes();
-
-    }
-
+    toast("Saved to Mistakes");
   }
-);
+}
 
+function showAnswer(){
 
-document.getElementById(
-  "challengeShow"
-).addEventListener(
-  "click",
-  function(){
-
-    document.getElementById(
-      "challengeAnswer"
-    ).classList.remove("hidden");
-
-    speak(
-      getDailyChallenge().a
-    );
-
+  if(currentQuestion){
+    speak(currentQuestion.a);
   }
-);
-
-
-/* =========================
-   高频词汇
-========================= */
-
-function renderWords(){
-
-  const box =
-    document.getElementById("wordList");
-
-  box.innerHTML = "";
-
-  words.forEach(function(item){
-
-    const card =
-      document.createElement("div");
-
-    card.className =
-      "word-card";
-
-    card.innerHTML =
-      "<div class='word'>"
-      + item[0]
-      + "</div>"
-      + "<div class='ipa'>"
-      + item[1]
-      + "</div>"
-      + "<div class='meaning'>"
-      + item[2]
-      + "</div>";
-
-    const button =
-      document.createElement("button");
-
-    button.className =
-      "audio";
-
-    button.textContent =
-      "🔊 听发音";
-
-    button.addEventListener(
-      "click",
-      function(){
-
-        speak(item[0]);
-
-      }
-    );
-
-    card.appendChild(button);
-
-    box.appendChild(card);
-
-  });
-
 }
 
 
 /* =========================
-   常用词组
+   DAILY CHALLENGE
 ========================= */
 
-function renderPhrases(){
-
-  const box =
-    document.getElementById("phraseList");
-
-  box.innerHTML = "";
-
-  phrases.forEach(function(item){
-
-    const div =
-      document.createElement("div");
-
-    div.className =
-      "phrase";
-
-    div.innerHTML =
-      "<strong>"
-      + item[0]
-      + "</strong>"
-      + "<br>"
-      + item[1];
-
-    const button =
-      document.createElement("button");
-
-    button.className =
-      "audio";
-
-    button.textContent =
-      "🔊 听";
-
-    button.addEventListener(
-      "click",
-      function(){
-
-        speak(item[0]);
-
-      }
-    );
-
-    div.appendChild(
-      document.createElement("br")
-    );
-
-    div.appendChild(button);
-
-    box.appendChild(div);
-
-  });
-
-}
-
-
-/* =========================
-   生活短句
-========================= */
-
-function renderSentences(){
-
-  const box =
-    document.getElementById(
-      "sentenceList"
-    );
-
-  box.innerHTML = "";
-
-  sentences.forEach(function(item){
-
-    const div =
-      document.createElement("div");
-
-    div.className =
-      "phrase";
-
-    div.innerHTML =
-      "<strong>"
-      + item[0]
-      + "</strong>"
-      + "<br>"
-      + item[1];
-
-    const button =
-      document.createElement("button");
-
-    button.className =
-      "audio";
-
-    button.textContent =
-      "🔊 听英文";
-
-    button.addEventListener(
-      "click",
-      function(){
-
-        speak(item[0]);
-
-      }
-    );
-
-    div.appendChild(
-      document.createElement("br")
-    );
-
-    div.appendChild(button);
-
-    box.appendChild(div);
-
-  });
-
-}
-
-
-/* =========================
-   滚动复习
-========================= */
-
-function renderReview(){
-
-  const box =
-    document.getElementById(
-      "reviewList"
-    );
-
-  box.innerHTML = "";
-
-  reviews.forEach(function(item){
-
-    const div =
-      document.createElement("div");
-
-    div.className =
-      "phrase";
-
-    div.innerHTML =
-      "<strong>"
-      + item[0]
-      + "</strong>"
-      + "<br>"
-      + item[1];
-
-    const button =
-      document.createElement("button");
-
-    button.className =
-      "audio";
-
-    button.textContent =
-      "🔊 听例句";
-
-    button.addEventListener(
-      "click",
-      function(){
-
-        speak(item[1]);
-
-      }
-    );
-
-    div.appendChild(
-      document.createElement("br")
-    );
-
-    div.appendChild(button);
-
-    box.appendChild(div);
-
-  });
-
-}
-
-
-/* =========================
-   错题本
-========================= */
-
-function renderMistakes(){
-
-  const box =
-    document.getElementById(
-      "mistakeList"
-    );
-
-  box.innerHTML = "";
-
-  updateStats();
-
-  if(state.mistakes.length === 0){
-
-    box.innerHTML =
-      "<p class='muted'>🎉 目前没有错题，继续保持！</p>";
-
-    return;
-
-  }
-
-  state.mistakes.forEach(function(question){
-
-    const item =
-      practiceQuestions.find(
-        function(x){
-          return x.q === question;
-        }
-      );
-
-    const div =
-      document.createElement("div");
-
-    div.className =
-      "phrase";
-
-    div.innerHTML =
-      "<strong>"
-      + question
-      + "</strong>"
-      + "<br>"
-      + "参考答案："
-      + (item ? item.a : "暂无");
-
-    const button =
-      document.createElement("button");
-
-    button.className =
-      "audio";
-
-    button.textContent =
-      "🔊 听答案";
-
-    button.addEventListener(
-      "click",
-      function(){
-
-        if(item){
-
-          speak(item.a);
-
-        }
-
-      }
-    );
-
-    div.appendChild(
-      document.createElement("br")
-    );
-
-    div.appendChild(button);
-
-    box.appendChild(div);
-
-  });
-
-}
-
-
-document.getElementById(
-  "clearMistakes"
-).addEventListener(
-  "click",
-  function(){
-
-    if(
-      confirm(
-        "确定要清空错题本吗？"
-      )
-    ){
-
-      state.mistakes = [];
-
-      saveState();
-
-      renderMistakes();
-
-    }
-
-  }
-);
-
-
-/* =========================
-   学习记录
-========================= */
-
-function renderHistory(){
-
-  const box =
-    document.getElementById(
-      "historyList"
-    );
-
-  box.innerHTML = "";
-
-  document.getElementById(
-    "historySummary"
-  ).textContent =
-    "已经保存 "
-    + state.history.length
-    + " 条学习记录。";
-
-  if(state.history.length === 0){
-
-    box.innerHTML =
-      "<p class='muted'>完成练习以后，学习记录会显示在这里。</p>";
-
-    return;
-
-  }
-
-  state.history.forEach(function(item){
-
-    const div =
-      document.createElement("div");
-
-    div.className =
-      "history-item";
-
-    div.innerHTML =
-      "<strong>"
-      + item.date
-      + "</strong>"
-      + " · "
-      + item.text;
-
-    box.appendChild(div);
-
-  });
-
-}
-
-
-/* =========================
-   页面切换
-========================= */
-
-document.querySelectorAll(
-  "nav button"
-).forEach(function(button){
-
-  button.addEventListener(
-    "click",
-    function(){
-
-      document.querySelectorAll(
-        "nav button"
-      ).forEach(function(btn){
-
-        btn.classList.remove(
-          "active"
-        );
-
-      });
-
-      document.querySelectorAll(
-        ".page"
-      ).forEach(function(page){
-
-        page.classList.remove(
-          "active"
-        );
-
-      });
-
-      button.classList.add(
-        "active"
-      );
-
-      const page =
-        document.getElementById(
-          button.dataset.page
-        );
-
-      if(page){
-
-        page.classList.add(
-          "active"
-        );
-
-      }
-
-      if(
-        button.dataset.page ===
-        "challenge"
-      ){
-
-        setupChallenge();
-
-      }
-
-      if(
-        button.dataset.page ===
-        "mistakes"
-      ){
-
-        renderMistakes();
-
-      }
-
-      if(
-        button.dataset.page ===
-        "history"
-      ){
-
-        renderHistory();
-
-      }
-
-    }
+const challenges=[
+
+["我刚下班。","I just got off work."],
+["我正在坐地铁回家。","I'm taking the subway home."],
+["我想休息一会儿。","I want to rest for a while."],
+["我准备做晚饭。","I'm getting ready to cook dinner."],
+["我通常早餐喝咖啡。","I usually drink coffee with my breakfast."],
+["我想继续学习英语。","I want to keep studying English."],
+["我不会放弃。","I won't give up."],
+["下班后，我通常坐地铁回家。","After getting off work, I usually take the subway home."],
+["到家后，我吃晚饭。","After getting home, I have dinner."],
+["虽然我很累，但我还是想学习英语。","Although I'm tired, I still want to study English."],
+["我本来打算遛狗。","I was going to walk my dog."],
+["咖啡帮助我清醒。","Coffee helps me wake up."],
+["音乐让我开心。","Music makes me happy."],
+["我想看看更多的世界。","I want to see more of the world."],
+["世界真的很美。","The world is really beautiful."]
+];
+
+
+function todayIndex(){
+
+  const start=new Date(
+    new Date().getFullYear(),
+    0,
+    0
   );
 
-});
+  const now=new Date();
+
+  return Math.floor(
+    (now-start)/(1000*60*60*24)
+  );
+}
+
+function loadChallenge(){
+
+  const index=todayIndex()%challenges.length;
+
+  currentChallenge=challenges[index];
+
+  document.getElementById("challengeCN").textContent=
+    currentChallenge[0];
+
+  document.getElementById("challengeInput").value="";
+
+  document.getElementById("challengeFeedback").textContent="";
+
+  document.getElementById("challengeAnswer").classList.remove("show");
+
+  document.getElementById("challengeAnswer").innerHTML=
+    currentChallenge[1];
+
+  const today=new Date().toISOString().slice(0,10);
+
+  document.getElementById("challengeBar").style.width=
+    state.challengeDone===today ? "100%" : "0%";
+}
+
+function normalize(s){
+
+  return s
+    .toLowerCase()
+    .replace(/[.,!?']/g,"")
+    .replace(/\s+/g," ")
+    .trim();
+}
+
+function checkChallenge(){
+
+  if(!currentChallenge){
+    loadChallenge();
+  }
+
+  const input=
+    document.getElementById("challengeInput").value;
+
+  const feedback=
+    document.getElementById("challengeFeedback");
+
+  if(!input.trim()){
+    feedback.textContent="Please type your answer first.";
+    return;
+  }
+
+  if(normalize(input)===normalize(currentChallenge[1])){
+
+    feedback.textContent=
+      "✓ Excellent! Your answer is correct.";
+
+    const today=new Date().toISOString().slice(0,10);
+
+    if(state.challengeDone!==today){
+
+      state.challengeDone=today;
+
+      addXP(30);
+
+    }
+
+    document.getElementById("challengeBar").style.width="100%";
+
+  }else{
+
+    feedback.textContent=
+      "Not quite. Try again or check the answer below.";
+  }
+}
+
+function showChallengeAnswer(){
+
+  document.getElementById("challengeAnswer")
+    .classList.add("show");
+
+}
+
+function speakChallenge(){
+
+  if(currentChallenge){
+    speak(currentChallenge[1]);
+  }
+}
 
 
 /* =========================
-   初始化
+   REVIEW
 ========================= */
 
-markStudy();
+function loadPatterns(){
 
-updateStats();
+  const box=document.getElementById("patterns");
 
-renderPractice();
+  box.innerHTML="";
 
-renderWords();
+  patterns.forEach(p=>{
 
-renderPhrases();
+    const div=document.createElement("div");
 
-renderSentences();
+    div.className="card pattern";
 
-renderReview();
+    div.innerHTML=`
+      <strong>${p[0]}</strong>
+      <p>${p[1]}</p>
+      <span class="muted">${p[2]}</span>
+      <br><br>
+      <button class="secondary"
+        onclick="speak('${escapeSpeak(p[1])}')">
+        🔊 Listen
+      </button>
+    `;
 
-renderMistakes();
+    box.appendChild(div);
 
-renderHistory();
+  });
+}
 
-setupChallenge();
+
+/* =========================
+   MISTAKES
+========================= */
+
+function loadMistakes(){
+
+  const box=document.getElementById("mistakeList");
+
+  if(!state.mistakes.length){
+
+    box.innerHTML=
+      `<div class="empty">
+        🎉 No mistakes yet.<br>
+        Keep practicing.
+      </div>`;
+
+    return;
+  }
+
+  box.innerHTML="";
+
+  state.mistakes.forEach((m,i)=>{
+
+    const div=document.createElement("div");
+
+    div.className="pattern";
+
+    div.innerHTML=`
+      <b>${m.question}</b>
+      <br><br>
+      <span class="muted">
+      Correct answer:
+      </span>
+      <br>
+      ${m.answer}
+      <br><br>
+      <button class="secondary"
+        onclick="speak('${escapeSpeak(m.answer)}')">
+        🔊 Listen
+      </button>
+    `;
+
+    box.appendChild(div);
+  });
+}
+
+function clearMistakes(){
+
+  state.mistakes=[];
+
+  save();
+
+  loadMistakes();
+
+  toast("Mistakes cleared");
+}
+
+
+/* =========================
+   TOAST
+========================= */
+
+let toastTimer;
+
+function toast(text){
+
+  const box=document.getElementById("toast");
+
+  box.textContent=text;
+
+  box.classList.add("show");
+
+  clearTimeout(toastTimer);
+
+  toastTimer=setTimeout(()=>{
+    box.classList.remove("show");
+  },1600);
+}
+
+
+/* =========================
+   START
+========================= */
+
+updateUI();
+loadLibrary();
+loadPatterns();
+loadChallenge();
 
 </script>
 
